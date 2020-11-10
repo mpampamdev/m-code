@@ -11,7 +11,7 @@
  Target Server Version : 100414
  File Encoding         : 65001
 
- Date: 10/11/2020 13:44:32
+ Date: 10/11/2020 13:56:19
 */
 
 SET NAMES utf8mb4;
@@ -43,7 +43,7 @@ CREATE TABLE `auth_permission`  (
   `permission` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `definition` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 231 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 232 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of auth_permission
@@ -121,6 +121,7 @@ INSERT INTO `auth_permission` VALUES (223, 'sidebar_view_m-crud_generator', 'Mod
 INSERT INTO `auth_permission` VALUES (226, 'config_update_encryption_key', 'Module config');
 INSERT INTO `auth_permission` VALUES (227, 'config_update_encryption_url', 'Module config');
 INSERT INTO `auth_permission` VALUES (230, 'config_update_url_suffix', 'Module config');
+INSERT INTO `auth_permission` VALUES (231, 'sidebar_view_profile', 'Module sidebar');
 
 -- ----------------------------
 -- Table structure for auth_permission_to_group
@@ -155,7 +156,7 @@ INSERT INTO `auth_permission_to_group` VALUES (179, 6);
 INSERT INTO `auth_permission_to_group` VALUES (180, 6);
 INSERT INTO `auth_permission_to_group` VALUES (226, 6);
 INSERT INTO `auth_permission_to_group` VALUES (227, 6);
-INSERT INTO `auth_permission_to_group` VALUES (228, 6);
+INSERT INTO `auth_permission_to_group` VALUES (230, 6);
 INSERT INTO `auth_permission_to_group` VALUES (144, 6);
 INSERT INTO `auth_permission_to_group` VALUES (145, 6);
 INSERT INTO `auth_permission_to_group` VALUES (146, 6);
@@ -207,6 +208,7 @@ INSERT INTO `auth_permission_to_group` VALUES (219, 6);
 INSERT INTO `auth_permission_to_group` VALUES (220, 6);
 INSERT INTO `auth_permission_to_group` VALUES (222, 6);
 INSERT INTO `auth_permission_to_group` VALUES (223, 6);
+INSERT INTO `auth_permission_to_group` VALUES (231, 6);
 
 -- ----------------------------
 -- Table structure for auth_user
@@ -225,12 +227,13 @@ CREATE TABLE `auth_user`  (
   `modified` datetime(0) NULL DEFAULT NULL,
   `is_delete` enum('0','1') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '0',
   PRIMARY KEY (`id_user`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of auth_user
 -- ----------------------------
-INSERT INTO `auth_user` VALUES (1, 'superadmin', 'mpampam@dev.com', '$2y$10$/LXc2T9H9cIfSVT0CSP01.wPWieXSIKqcFNM4CzBEDXx9qhWwsGx6', 'mpampam', '2020-11-10 14:41:00', '::1', '1', '2020-02-14 00:01:19', NULL, '0');
+INSERT INTO `auth_user` VALUES (1, 'superadmin', 'mpampam@dev.com', '$2y$10$/LXc2T9H9cIfSVT0CSP01.wPWieXSIKqcFNM4CzBEDXx9qhWwsGx6', 'mpampam', '2020-11-10 14:45:00', '::1', '1', '2020-02-14 00:01:19', NULL, '0');
+INSERT INTO `auth_user` VALUES (15, 'admin', 'admin@mail.com', '$2y$10$1mFXVAf771zn7oXgjLQdneoPNT0zBq04blAnse0rqi3DyNjO5/69a', 'd2de6548acb263de1abf2130c22c57937a90cbda87309a09f2eae1ca24ba67f7', '2020-11-10 14:52:00', '::1', '1', '2020-11-10 14:51:57', NULL, '0');
 
 -- ----------------------------
 -- Table structure for auth_user_to_group
@@ -255,6 +258,7 @@ INSERT INTO `auth_user_to_group` VALUES (11, 6);
 INSERT INTO `auth_user_to_group` VALUES (12, 6);
 INSERT INTO `auth_user_to_group` VALUES (13, 6);
 INSERT INTO `auth_user_to_group` VALUES (14, 6);
+INSERT INTO `auth_user_to_group` VALUES (15, 6);
 
 -- ----------------------------
 -- Table structure for ci_sessions
@@ -294,7 +298,7 @@ CREATE TABLE `filemanager`  (
   `created` datetime(0) NULL DEFAULT NULL,
   `update` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of filemanager
@@ -303,6 +307,7 @@ INSERT INTO `filemanager` VALUES (14, '20201108015817-image-removebg-p.png', 'Di
 INSERT INTO `filemanager` VALUES (15, '20201108020110-posisi_standar_a.jpg', 'Di upload melalu module Test Module', '2020-11-08 02:01:00', NULL);
 INSERT INTO `filemanager` VALUES (16, '85a8fd633c-529px-BUMN_Hadir.png', 'Di upload melalui module File manager', '2020-11-09 21:39:54', NULL);
 INSERT INTO `filemanager` VALUES (17, 'cb5a5cf117-doctor_icon_1348.png', 'Di upload melalui module File manager', '2020-11-09 21:40:18', NULL);
+INSERT INTO `filemanager` VALUES (18, '533bb2b82b-1678983414.png', 'Di upload melalui module Profile', '2020-11-10 14:50:00', NULL);
 
 -- ----------------------------
 -- Table structure for main_menu
@@ -322,7 +327,7 @@ CREATE TABLE `main_menu`  (
   `created` datetime(0) NULL DEFAULT NULL,
   `modified` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id_menu`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 55 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 56 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of main_menu
@@ -337,6 +342,28 @@ INSERT INTO `main_menu` VALUES (39, 37, 'groups', 'groups', 'controller', 'group
 INSERT INTO `main_menu` VALUES (40, 37, 'permission', 'permission', 'controller', 'permission', NULL, '', '1', 5, '2020-10-27 08:49:49', '2020-10-29 22:47:10');
 INSERT INTO `main_menu` VALUES (48, 0, 'm-crud generator', 'm-crud-generator', 'url', 'http://localhost/ci/mcrud', '_blank', 'mdi mdi-xml', '1', 11, '2020-11-01 12:23:11', '2020-11-06 18:27:33');
 INSERT INTO `main_menu` VALUES (54, 7, 'file manager', 'file-manager', 'controller', 'filemanager', '', 'mdi mdi-folder-multiple-image', '1', 9, '2020-11-08 00:44:38', NULL);
+INSERT INTO `main_menu` VALUES (55, 0, 'profile', 'profile', 'controller', 'profile', '', 'mdi mdi-account-card-details', '1', 10, '2020-11-10 14:48:48', NULL);
+
+-- ----------------------------
+-- Table structure for profile
+-- ----------------------------
+DROP TABLE IF EXISTS `profile`;
+CREATE TABLE `profile`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `telepon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `alamat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `foto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `tanggal` date NULL DEFAULT NULL,
+  `tanggal_waktu` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of profile
+-- ----------------------------
+INSERT INTO `profile` VALUES (1, 'test 1', 'test@mail.com', '0123342432', 'makassar', '', '2020-11-10', '2020-11-10 16:49:00');
 
 -- ----------------------------
 -- Table structure for setting

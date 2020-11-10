@@ -67,7 +67,7 @@ $config['uri_protocol']	= 'REQUEST_URI';
 |
 | https://codeigniter.com/user_guide/general/urls.html
 */
-$config['url_suffix'] = '.asp';
+$config['url_suffix'] = '.html';
 
 /*
 |--------------------------------------------------------------------------
@@ -79,7 +79,7 @@ $config['url_suffix'] = '.asp';
 | than english.
 |
 */
-$config['language']	= 'indonesia';
+$config['language']	= 'english';
 
 /*
 |--------------------------------------------------------------------------
@@ -328,7 +328,7 @@ $config['cache_query_string'] = FALSE;
 |
 */
 $config['encryption_key'] = '__wggck4k8kkk0kggow0w4cok40oc0kgwc8c0488oc';
-$config['encryption_url'] = TRUE;
+$config['encryption_url'] = FALSE;
 /*
 |--------------------------------------------------------------------------
 | Session Variables
