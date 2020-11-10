@@ -1,0 +1,410 @@
+/* scroll */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgb(223, 223, 223);
+  border-radius: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #d1d1d1;
+  border-radius: 2px;
+}
+
+.content-wrapper{
+  padding:1.5rem 2.5rem!important;
+}
+
+/* icon */
+.icon-demo-content {
+  text-align: center;
+  color: #707070;
+}
+
+.icon-demo-content i {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.icon-demo-content .col-sm-6 {
+  margin-bottom: 30px;
+  font-size: 12px;
+}
+
+.icon-demo-content .col-sm-6:hover i {
+  color: #2f8ee0;
+}
+
+/* icon end */
+
+
+/* table level */
+  .table{
+    width: 100%!important;
+  }
+
+  .table-wrap{
+    white-space: normal!important;
+      /* word-wrap: break-word!important; */
+      /* line-height: 18px!important; */
+      width: auto!important
+      /* text-align: justify; */
+  }
+
+  .table td{
+    padding: 0.9999rem 0.9375rem!important;
+  }
+
+  .table-level{
+    font-size:14px!important;
+  }
+
+  .table-level th{
+    font-weight: normal!important;
+    padding: 10px 10px 10px 10px!important;
+    border-top: none!important;
+  }
+
+  .table-level ul{
+    list-style: none;
+  }
+/* end table level */
+
+.btn{
+  color:#fff!important;
+}
+
+.btn-default {
+    color: #fff!important;
+    background-color: #ff4747!important;
+    border-color: #ff4747!important;
+}
+
+.btn-info-2 {
+    background-color: #3bcfb0!important;
+    border-color: #3bcfb0!important;
+}
+
+/* //table btn */
+.dataTables_wrapper .dataTable .btn, .dataTables_wrapper .dataTable .fc button, .fc .dataTables_wrapper .dataTable button, .dataTables_wrapper .dataTable .ajax-upload-dragdrop .ajax-file-upload, .ajax-upload-dragdrop .dataTables_wrapper .dataTable .ajax-file-upload, .dataTables_wrapper .dataTable .swal2-modal .swal2-buttonswrapper .swal2-styled, .swal2-modal .swal2-buttonswrapper .dataTables_wrapper .dataTable .swal2-styled, .dataTables_wrapper .dataTable .wizard > .actions a, .wizard > .actions .dataTables_wrapper .dataTable a{
+  padding: 0.3rem 0.6rem!important;
+  border:1px solid #dddddd;
+}
+
+/* icon-sidebar */
+.sidebar{
+background: #fff!important;
+}
+
+.sidebar .nav .nav-item .nav-link .menu-title{
+  font-family: sans-serif!important;
+}
+
+.sidebar .nav.sub-menu .nav-item .nav-link{
+  font-family: sans-serif!important;
+}
+
+.sidebar .nav.sub-menu{
+  background: #f5f5f5!important;
+  padding: 0.25rem 0 0 2.0rem!important;
+}
+
+.sidebar .nav:not(.sub-menu){
+  margin-top: 0!important;
+  margin-left: 0!important;
+  margin-right: 0!important;
+}
+
+.sidebar .nav:not(.sub-menu) > .nav-item{
+    margin-top: 0!important;
+}
+
+
+.sidebar .nav:not(.sub-menu) > .nav-item > .nav-link[aria-expanded="true"]{
+  background: #f5f5f5!important;
+}
+
+.sidebar .nav:not(.sub-menu) > .nav-item.active{
+  background: #f5f5f5!important;
+  border-radius: 0!important;
+}
+
+.sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link, .sidebar .nav:not(.sub-menu) > .nav-item:hover[aria-expanded="true"]{
+  background: #f9f9f9!important;
+  border-radius: 0!important;
+}
+.sidebar .nav.sub-menu .nav-item .nav-link:hover{
+  color: #248afd!important;
+}
+
+.sidebar .nav.sub-menu .nav-item .nav-link.active{
+  color: #248afd!important;
+}
+
+.sidebar .nav .nav-item .nav-link{
+  padding:0.55rem 1.937rem 0.55rem 1rem!important;
+}
+
+.sidebar .nav .nav-item .nav-link i.menu-icon{
+  padding-bottom: 4px!important;
+}
+
+.sidebar .nav.sub-menu .nav-item::before{
+  content: none!important;
+}
+
+/* tab */
+.tab-content{
+  border: none!important;
+  padding:10px 10px 10px 2px!important;
+}
+
+/* table-setting edit table */
+.editable-click, a.editable-click, a.editable-click:hover{
+  text-decoration: none;
+  border-bottom: dashed 1px #797979!important;
+  color: #797979!important;
+}
+
+.btn-outline-success, .editable-container.editable-inline .editableform .control-group .editable-buttons .editable-submit{
+  color: #fff!important;
+  border-color: #166ac1!important;
+}
+
+.btn-outline-success:hover, .editable-container.editable-inline .editableform .control-group .editable-buttons .editable-submit:hover{
+  color: #fff;
+  background-color: #166ac1!important;
+  border-color: #166ac1!important;
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active, .editable-container.editable-inline .editableform .control-group .editable-buttons .editable-submit:not(:disabled):not(.disabled):active, .btn-outline-success:not(:disabled):not(.disabled).active, .editable-container.editable-inline .editableform .control-group .editable-buttons .editable-submit:not(:disabled):not(.disabled).active, .show > .btn-outline-success.dropdown-toggle, .editable-container.editable-inline .editableform .control-group .editable-buttons .show > .dropdown-toggle.editable-submit{
+color: #fff;
+background-color: #166ac1!important;
+border-color: #166ac1!important;
+}
+
+.help-block{
+  font-size: 12px;
+  color:#cb3737;
+  font-style: italic;
+  white-space: break-spaces!important;
+  word-wrap: break-word!important;
+  max-width: 300px;
+}
+
+.editable-error-block{
+  margin:5px 0 0 0px!important;
+  width: 100%!important;
+}
+
+.table-setting{
+  width: 100%;
+}
+
+.table-setting tr td
+{
+  padding: 10px;
+  color:#676767;
+  font-size: 14px;
+}
+.table-setting .table-title{
+  width: 30%;
+}
+
+/* //nesttable */
+.dd-handle{
+  font-weight: normal!important;
+}
+
+
+
+.spinner-border-custom{
+  width: 1rem!important;
+  height: 1rem!important;
+}
+
+
+/* //toast js */
+.jq-toast-wrap{
+  /* width: 200px!important; */
+}
+
+/* /// tabss */
+.nav-pills .nav-item{
+  margin-top: 0.20rem;
+}
+
+/* multi column */
+.multi-column{
+  margin-top: 10px;
+  -webkit-column-count: 4;
+  -moz-column-count: 4;
+  -ms-column-count: 4;
+  -o-column-count: 4;
+  column-count: 4;
+  -webkit-column-gap: 15px;
+  -moz-column-gap: 15px;
+  -ms-column-gap: 15px;
+  -o-column-gap: 15px;
+  column-gap: 15px;
+  columns: 4;
+}
+
+.multi-column ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.multi-column ul>li{
+  display: inline-block;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.form-check-no-margin{
+  margin-top:0!important;
+  margin-bottom: 0!important;
+}
+
+#search{
+  border: none;
+  border-bottom: 1px solid #CECECE;
+  padding: 5px;
+}
+
+/* sosmed color */
+.cl-facebook{
+    color :#0060f1;
+}
+
+.cl-instagram{
+    color :#f1005e;
+}
+
+.cl-youtube{
+    color :#f10000;
+}
+
+.cl-twitter{
+    color :#00dbf1;
+}
+
+
+/* nestatble */
+.drag_disabled{
+    pointer-events: none;
+}
+
+.drag_enabled{
+    pointer-events: all;
+}
+
+/* modalFooter */
+.modal-open .modal{
+  overflow-y: hidden!important;
+  padding-right:0px!important;
+}
+
+.modal-header .close{
+  padding:1.2rem 1.5rem!important;
+  font-size: 30px!important;
+}
+
+.modal .modal-dialog .modal-content .modal-header .close span{
+    color: #ffffff!important;
+
+}
+
+.close{
+  opacity: 1!important;
+}
+
+.modal-dialog-scrollable .modal-content{
+  border:0!important;
+  border-radius: 0!important;
+}
+
+.modal .modal-dialog .modal-content .modal-header{
+  padding: 10px 16px !important;
+  border-radius: 0!important;
+}
+
+.modal .modal-dialog{
+  margin-top: 30px!important;
+}
+.modal-footer{
+  padding: 0!important;
+  margin:0 !important;
+}
+
+.modal .modal-dialog .modal-content .modal-footer{
+  padding: 0!important;
+  margin:0 !important;
+}
+
+/* table profile */
+.table-profile tr td{
+  padding: 5px;
+  font-size: 14px;
+  color: #4a4a4a;
+  font-family: sans-serif;
+}
+
+
+/* grid column */
+
+.grid-container{
+  display: grid;
+  width: 100%;
+  /* background-color: red; */
+  margin:10px auto;
+  grid-template-columns:repeat(auto-fit, minmax(30% ,1fr));
+}
+
+.grid-container .grid-items{
+  justify-content: center;
+  display: flex;
+  margin: 5px;
+  /* max-width: 50%; */
+}
+
+
+.grid-container .grid-items .grid-content{
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.form-group select.form-control{
+  color:#2d2d2d!important;
+}
+
+.card-header{
+  font-weight: 500;
+}
+.card-header:first-child{
+  border-radius: 0!important;
+}
+
+.bg-custom{
+  background-color: #0a9cef!important;
+}
+
+.bg-primary, .settings-panel .color-tiles .tiles.primary{
+  background-color: #0d9def !important
+}
+
+.form-control-smm{
+  height: 2rem!important
+}
+
+/* 
+.form-control-sm{
+  height: 2.3999rem!important
+} */

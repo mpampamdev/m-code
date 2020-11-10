@@ -1,0 +1,16 @@
+<form autocomplete="off">
+  <div class="row">{content_filter}
+
+    <div class="col-sm-12 mt-2">
+      <button type='button' class='btn btn-default btn-sm' data-dismiss='modal'>{open}cclang("cancel"){close}</button>
+      <button type="button" class="btn btn-primary btn-sm" id="filter">Filter</button>
+    </div>
+  </div>
+</form>
+
+<script type="text/javascript">
+$("#filter").click(function(){
+  $('#modalGue').modal('hide');
+  $("#table").DataTable().ajax.reload();  //just reload table
+});
+</script>
