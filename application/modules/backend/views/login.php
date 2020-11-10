@@ -25,7 +25,7 @@
               <h4>LOGIN SYSTEM</h4>
               <h6 class="font-weight-light">Please login to manage the system</h6>
               <form class="pt-3" action="<?=site_url("backend/login/action")?>" id="form">
-                <input type="text" name="token" class="form-control" value="<?=$this->session->token?>">
+                <input type="hidden" name="token" class="form-control" value="<?=$this->session->token?>">
                 <div class="form-group">
                   <label for="exampleInputEmail">Email</label>
                   <div class="input-group">
