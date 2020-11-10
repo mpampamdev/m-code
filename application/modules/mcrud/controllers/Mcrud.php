@@ -51,7 +51,7 @@ class Mcrud extends CI_Controller{
     $this->form_validation->set_rules("table","Table","trim|xss_clean|required");
     $this->form_validation->set_rules("title","Title","trim|xss_clean|required");
     $this->form_validation->set_rules("model","Model","trim|xss_clean|required|alpha_underscores|callback__cek_model");
-    $this->form_validation->set_rules("controller","Controller","trim|xss_clean|alpha_underscores|required|_cek_controller");
+    $this->form_validation->set_rules("controller","Controller","trim|xss_clean|alpha_underscores|required|callback__cek_controller");
     $this->form_validation->set_rules("show_table[]","Show on table","trim|xss_clean|required",[
       "required" => "(".cclang('show_in_table').") ".cclang("select_one_field")
     ]);

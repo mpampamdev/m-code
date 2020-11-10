@@ -11,7 +11,7 @@
  Target Server Version : 100414
  File Encoding         : 65001
 
- Date: 10/11/2020 13:18:37
+ Date: 10/11/2020 13:44:32
 */
 
 SET NAMES utf8mb4;
@@ -230,7 +230,7 @@ CREATE TABLE `auth_user`  (
 -- ----------------------------
 -- Records of auth_user
 -- ----------------------------
-INSERT INTO `auth_user` VALUES (1, 'superadmin', 'mpampam@dev.com', '$2y$10$/LXc2T9H9cIfSVT0CSP01.wPWieXSIKqcFNM4CzBEDXx9qhWwsGx6', 'mpampam', '2020-11-10 13:36:00', '::1', '1', '2020-02-14 00:01:19', NULL, '0');
+INSERT INTO `auth_user` VALUES (1, 'superadmin', 'mpampam@dev.com', '$2y$10$/LXc2T9H9cIfSVT0CSP01.wPWieXSIKqcFNM4CzBEDXx9qhWwsGx6', 'mpampam', '2020-11-10 14:41:00', '::1', '1', '2020-02-14 00:01:19', NULL, '0');
 
 -- ----------------------------
 -- Table structure for auth_user_to_group
@@ -337,24 +337,6 @@ INSERT INTO `main_menu` VALUES (39, 37, 'groups', 'groups', 'controller', 'group
 INSERT INTO `main_menu` VALUES (40, 37, 'permission', 'permission', 'controller', 'permission', NULL, '', '1', 5, '2020-10-27 08:49:49', '2020-10-29 22:47:10');
 INSERT INTO `main_menu` VALUES (48, 0, 'm-crud generator', 'm-crud-generator', 'url', 'http://localhost/ci/mcrud', '_blank', 'mdi mdi-xml', '1', 11, '2020-11-01 12:23:11', '2020-11-06 18:27:33');
 INSERT INTO `main_menu` VALUES (54, 7, 'file manager', 'file-manager', 'controller', 'filemanager', '', 'mdi mdi-folder-multiple-image', '1', 9, '2020-11-08 00:44:38', NULL);
-
--- ----------------------------
--- Table structure for profile
--- ----------------------------
-DROP TABLE IF EXISTS `profile`;
-CREATE TABLE `profile`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `telepon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `foto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of profile
--- ----------------------------
-INSERT INTO `profile` VALUES (1, 'test', 'contoh@mail.com', '123456', '20201106171648-doctor_icon_134842.png');
 
 -- ----------------------------
 -- Table structure for setting
