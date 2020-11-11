@@ -27,25 +27,6 @@
     });
 
 
-
-    $('#modalGue').on('hide.bs.modal', function () {
-      setTimeout(function(){
-          $('.modal-dialog').removeClass('modal-lg modal-sm modal-md');
-          $('#modalTitle, #modalContent , #modalFooter').html('');
-        }, 500);
-     });
-
-     $(document).on("click","#reset-pwd",function(e){
-       e.preventDefault();
-       $('.modal-dialog').addClass('modal-md');
-       $("#modalTitle").text('Reset Password');
-       $('#modalContent').load($(this).attr("href"));
-       $("#modalGue").modal('show');
-     });
-
-
-
-
      //tool tip
      /* Code for attribute data-custom-class for adding custom class to tooltip */
      if (typeof $.fn.tooltip.Constructor === 'undefined') {
