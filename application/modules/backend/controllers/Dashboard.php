@@ -27,7 +27,7 @@ class Dashboard extends Backend{
   {
     // show_error("Access Permission", 403,'403::Access Not Permission');
     // echo CI_VERSION;
-    echo generateRandomString();
+    echo randomKey();
   }
 
 
