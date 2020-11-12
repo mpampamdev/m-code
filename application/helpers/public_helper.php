@@ -22,8 +22,19 @@ function setting($kd = null , $field = "value")
 
 function randomKey($length = 32)
 {
-  $ci =  &get_instance();
-  return bin2hex($ci->encryption->create_key($length));
+  return generateRandomString($length);
+}
+
+
+function generateRandomString($length) {
+    $ci =  &get_instance();
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.$ci->config->item("encryption_key");
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
 }
 
 

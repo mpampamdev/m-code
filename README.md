@@ -10,7 +10,7 @@
 <li>setting system</li>
 <li>ajax crud</li>
 <li>Serverside datatable</li>
-<li>Bulilt in PHP V.7.4</li>
+<li>Bulilt in PHP Version 7.4.10</li>
 <li>CI Version 3.1.11</li>
 </ul>
 

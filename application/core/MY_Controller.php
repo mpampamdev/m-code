@@ -22,7 +22,7 @@ class Backend extends CI_Controller{
     if (!$this->session->userdata("login_status")) {
         redirect(site_url("backend/login"),"refresh");
     }else {
-      $this->load->library(array("backend/Template","backend/Userize","form_validation","security","user_agent","encryption"));
+      $this->load->library(array("backend/Template","backend/Userize","form_validation","security","user_agent"));
       $this->load->helper(array("app","sct","public","language"));
       $this->lang->load("app",$this->config->item("language"));
       if (setting("user_log") == "Y") {
