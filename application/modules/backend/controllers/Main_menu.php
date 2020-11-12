@@ -211,7 +211,7 @@ function update_action($id)
 
 function delete($id)
 {
-    if (is_allowed('menu_delete')) {
+    if (!is_allowed('menu_delete')) {
       set_message("error","do not have permission to access");
     }else {
       $cek_child = $this->db->get_where("main_menu",["is_parent"=>dec_url($id)]);

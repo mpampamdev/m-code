@@ -11,7 +11,7 @@
  Target Server Version : 100414
  File Encoding         : 65001
 
- Date: 13/11/2020 00:10:36
+ Date: 13/11/2020 00:44:55
 */
 
 SET NAMES utf8mb4;
@@ -341,7 +341,6 @@ INSERT INTO `main_menu` VALUES (39, 37, 'groups', 'groups', 'controller', 'group
 INSERT INTO `main_menu` VALUES (40, 37, 'permission', 'permission', 'controller', 'permission', NULL, '', '1', 5, '2020-10-27 08:49:49', '2020-10-29 22:47:10');
 INSERT INTO `main_menu` VALUES (48, 0, 'm-crud generator', 'm-crud-generator', 'url', 'http://localhost/ci/mcrud', '_blank', 'mdi mdi-xml', '1', 11, '2020-11-01 12:23:11', '2020-11-06 18:27:33');
 INSERT INTO `main_menu` VALUES (54, 7, 'file manager', 'file-manager', 'controller', 'filemanager', '', 'mdi mdi-folder-multiple-image', '1', 9, '2020-11-08 00:44:38', NULL);
-INSERT INTO `main_menu` VALUES (55, 0, 'profile', 'profile', 'controller', 'profile', '', 'mdi mdi-account-card-details', '1', 10, '2020-11-10 14:48:48', NULL);
 
 -- ----------------------------
 -- Table structure for setting
