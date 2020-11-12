@@ -11,7 +11,7 @@
  Target Server Version : 100414
  File Encoding         : 65001
 
- Date: 10/11/2020 13:56:19
+ Date: 13/11/2020 00:10:36
 */
 
 SET NAMES utf8mb4;
@@ -195,7 +195,6 @@ INSERT INTO `auth_permission_to_group` VALUES (193, 6);
 INSERT INTO `auth_permission_to_group` VALUES (194, 6);
 INSERT INTO `auth_permission_to_group` VALUES (195, 6);
 INSERT INTO `auth_permission_to_group` VALUES (196, 6);
-INSERT INTO `auth_permission_to_group` VALUES (197, 6);
 INSERT INTO `auth_permission_to_group` VALUES (198, 6);
 INSERT INTO `auth_permission_to_group` VALUES (212, 6);
 INSERT INTO `auth_permission_to_group` VALUES (213, 6);
@@ -232,8 +231,8 @@ CREATE TABLE `auth_user`  (
 -- ----------------------------
 -- Records of auth_user
 -- ----------------------------
-INSERT INTO `auth_user` VALUES (1, 'superadmin', 'mpampam@dev.com', '$2y$10$/LXc2T9H9cIfSVT0CSP01.wPWieXSIKqcFNM4CzBEDXx9qhWwsGx6', 'mpampam', '2020-11-10 14:45:00', '::1', '1', '2020-02-14 00:01:19', NULL, '0');
-INSERT INTO `auth_user` VALUES (15, 'admin', 'admin@mail.com', '$2y$10$1mFXVAf771zn7oXgjLQdneoPNT0zBq04blAnse0rqi3DyNjO5/69a', 'd2de6548acb263de1abf2130c22c57937a90cbda87309a09f2eae1ca24ba67f7', '2020-11-10 14:52:00', '::1', '1', '2020-11-10 14:51:57', NULL, '0');
+INSERT INTO `auth_user` VALUES (1, 'superadmin', 'mpampam@dev.com', '$2y$10$/LXc2T9H9cIfSVT0CSP01.wPWieXSIKqcFNM4CzBEDXx9qhWwsGx6', 'mpampam', '2020-11-12 23:48:00', '::1', '1', '2020-02-14 00:01:19', NULL, '0');
+INSERT INTO `auth_user` VALUES (15, 'admin', 'admin@mail.com', '$2y$10$1mFXVAf771zn7oXgjLQdneoPNT0zBq04blAnse0rqi3DyNjO5/69a', 'd2de6548acb263de1abf2130c22c57937a90cbda87309a09f2eae1ca24ba67f7', '2020-11-13 00:19:00', '::1', '1', '2020-11-10 14:51:57', NULL, '0');
 
 -- ----------------------------
 -- Table structure for auth_user_to_group
@@ -343,27 +342,6 @@ INSERT INTO `main_menu` VALUES (40, 37, 'permission', 'permission', 'controller'
 INSERT INTO `main_menu` VALUES (48, 0, 'm-crud generator', 'm-crud-generator', 'url', 'http://localhost/ci/mcrud', '_blank', 'mdi mdi-xml', '1', 11, '2020-11-01 12:23:11', '2020-11-06 18:27:33');
 INSERT INTO `main_menu` VALUES (54, 7, 'file manager', 'file-manager', 'controller', 'filemanager', '', 'mdi mdi-folder-multiple-image', '1', 9, '2020-11-08 00:44:38', NULL);
 INSERT INTO `main_menu` VALUES (55, 0, 'profile', 'profile', 'controller', 'profile', '', 'mdi mdi-account-card-details', '1', 10, '2020-11-10 14:48:48', NULL);
-
--- ----------------------------
--- Table structure for profile
--- ----------------------------
-DROP TABLE IF EXISTS `profile`;
-CREATE TABLE `profile`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `telepon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `alamat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `foto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `tanggal` date NULL DEFAULT NULL,
-  `tanggal_waktu` datetime(0) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of profile
--- ----------------------------
-INSERT INTO `profile` VALUES (1, 'test 1', 'test@mail.com', '0123342432', 'makassar', '', '2020-11-10', '2020-11-10 16:49:00');
 
 -- ----------------------------
 -- Table structure for setting
