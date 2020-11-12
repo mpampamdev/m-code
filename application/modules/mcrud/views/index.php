@@ -64,7 +64,7 @@
                         <div class="card-description">
                           <p> M-CRUD adalah sebuah tools crud generator untuk mempermudah pembuatan module pada panel M-Code web/app yang telah di sediakan.</p>
                           <ul>
-                            <li>Support PHP V.7.4.10</li>
+                            <li>Codeigniter <?=CI_VERSION?></li>
                             <li>dev : mpampam</li>
                             <li>fb : <a href="https://facebook.com/mpampam" target="_blank">@mpampam</a></li>
                             <li>fanspage : <a href="https://web.facebook.com/programmerjalanan" target="_blank">@programmerjalanan</a></li>

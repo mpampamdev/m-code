@@ -36,10 +36,9 @@ class Group extends Backend{
   function json()
   {
     if ($this->input->is_ajax_request()) {
-      if (!$this->is_allowed('groups_list',false)) {
-        return $this->response([
-				'is_allowed' => 'sorry you do not have permission to access'
-				]);
+      if (!is_allowed('groups_list')) {
+        show_error("Access Permission", 403,'403::Access Not Permission');
+        exit();
       }
 
       $list = $this->model->get_datatables();
@@ -96,10 +95,9 @@ class Group extends Backend{
   function add_action()
   {
     if ($this->input->is_ajax_request()) {
-      if (!$this->is_allowed('groups_add',false)) {
-        return $this->response([
-				'is_allowed' => 'sorry you do not have permission to access'
-				]);
+      if (!is_allowed('groups_add')) {
+        show_error("Access Permission", 403,'403::Access Not Permission');
+        exit();
       }
 
       $json = array('success' => false);
@@ -145,10 +143,9 @@ class Group extends Backend{
   function update_action($id = null)
   {
     if ($this->input->is_ajax_request()) {
-      if (!$this->is_allowed('groups_update',false)) {
-        return $this->response([
-				'is_allowed' => 'sorry you do not have permission to access'
-				]);
+      if (!is_allowed('groups_update')) {
+        show_error("Access Permission", 403,'403::Access Not Permission');
+        exit();
       }
 
       $json = array('success' => false);
@@ -178,7 +175,7 @@ class Group extends Backend{
   {
     if ($this->input->is_ajax_request()) {
 
-        if (!$this->is_allowed('groups_delete',false)) {
+        if (!is_allowed('groups_delete')) {
           return $this->response([
             'type_msg' => "error",
             'msg' => "Do not have permission to access"
@@ -216,7 +213,8 @@ class Group extends Backend{
   function save_acces_control($id = "")
   {
     if (!is_allowed('groups_access')) {
-      set_message("error","Do not have permission to access");
+      show_error("Access Permission", 403,'403::Access Not Permission');
+      exit();
     }else {
       if ($this->model->find(dec_url($id))) {
           $permission = $this->input->post("id");

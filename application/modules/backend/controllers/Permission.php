@@ -92,10 +92,9 @@ class Permission extends Backend{
   function add_action()
   {
     if ($this->input->is_ajax_request()) {
-      if (!$this->is_allowed('permission_add',false)) {
-        return $this->response([
-				'permission' => 'Sorry you do not have permission to access'
-				]);
+      if (!is_allowed('permission_add')) {
+        show_error("Access Permission", 403,'403::Access Not Permission');
+        exit();
       }
 
       $json = array('success' => false);
@@ -141,10 +140,9 @@ class Permission extends Backend{
   function update_action($id = null)
   {
     if ($this->input->is_ajax_request()) {
-      if (!$this->is_allowed('permission_update',false)) {
-        return $this->response([
-				'permission' => 'sorry_you_do_not_have_permission_to_access'
-				]);
+      if (!is_allowed('permission_update')) {
+        show_error("Access Permission", 403,'403::Access Not Permission');
+        exit();
       }
 
       $json = array('success' => false);

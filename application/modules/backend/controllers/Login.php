@@ -85,7 +85,7 @@ class Login extends CI_Controller{
             echo json_encode($json);
           }else {
             $this->output->set_status_header(403);
-            show_error("ERROR:: token invalid");
+            show_error("Token Invalid", 403,'403::Token');
           }
       }
   }

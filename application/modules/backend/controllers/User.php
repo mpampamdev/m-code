@@ -28,10 +28,9 @@ class User extends Backend{
   function json()
   {
     if ($this->input->is_ajax_request()) {
-      if (!$this->is_allowed('user_list',false)) {
-        return $this->response([
-        'is_allowed' => 'sorry you do not have permission to access'
-        ]);
+      if (!is_allowed('user_list')) {
+        show_error("Access Permission", 403,'403::Access Not Permission');
+        exit();
       }
 
       $list = $this->model->get_datatables();
@@ -110,11 +109,10 @@ function add()
 function add_action()
 {
   if ($this->input->is_ajax_request()) {
-        if (!$this->is_allowed('user_add',false)) {
-          return $this->response([
-          'is_allowed' => 'sorry you do not have permission to access'
-          ]);
-        }
+    if (!is_allowed('user_add')) {
+      show_error("Access Permission", 403,'403::Access Not Permission');
+      exit();
+    }
 
         $json = array('success'=>false, 'alert'=>array());
         $this->_rules();
@@ -174,11 +172,10 @@ function update($id)
 function update_action($id)
 {
   if ($this->input->is_ajax_request()) {
-        if (!$this->is_allowed('user_update',false)) {
-          return $this->response([
-          'is_allowed' => 'sorry you do not have permission to access'
-          ]);
-        }
+    if (!is_allowed('user_update')) {
+      show_error("Access Permission", 403,'403::Access Not Permission');
+      exit();
+    }
         $json = array('success'=>false, 'alert'=>array());
         $this->_rules();
         if ($this->form_validation->run()) {
@@ -235,7 +232,7 @@ function view($id = null)
 function delete($id)
 {
   if ($this->input->is_ajax_request()) {
-    if (!$this->is_allowed('user_delete',false)) {
+    if (!$is_allowed('user_delete')) {
       return $this->response([
         'type_msg' => "error",
         'msg' => "do not have permission to access"

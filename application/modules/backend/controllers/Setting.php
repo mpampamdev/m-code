@@ -41,7 +41,7 @@ class Setting extends Backend{
       $value = htmlspecialchars($this->input->post("value", true));
 
       $json = array('success'=>false, 'msg'=>array());
-      if (!$this->is_allowed("config_update_".strtolower($name),false)) {
+      if (!is_allowed("config_update_".strtolower($name))) {
         return $this->response([
           'success' => false,
           'msg' => "Do not have permission to update"
@@ -82,7 +82,7 @@ class Setting extends Backend{
   function file_upload()
   {
     if ($this->input->is_ajax_request()) {
-      if (!$this->is_allowed("config_update_logo",false)) {
+      if (!is_allowed("config_update_logo")) {
         return $this->response([
           'success' => false,
           'alert' => "do not have permission to update"

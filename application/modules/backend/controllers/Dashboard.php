@@ -23,5 +23,11 @@ class Dashboard extends Backend{
     $this->template->view("Content/dashboard/index");
   }
 
+  function test()
+  {
+    // show_error("Access Permission", 403,'403::Access Not Permission');
+    echo CI_VERSION;
+  }
+
 
 }

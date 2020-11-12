@@ -102,11 +102,10 @@ function add()
 function add_action()
 {
   if ($this->input->is_ajax_request()) {
-      if (!$this->is_allowed('menu_add',false)) {
-        return $this->response([
-        'permission' => 'sorry_you_do_not_have_permission_to_access'
-        ]);
-      }
+    if (!is_allowed('menu_add')) {
+      show_error("Access Permission", 403,'403::Access Not Permission');
+      exit();
+    }
 
         $json = array('success'=>false, 'alert'=>array());
         $this->_rules();
@@ -164,11 +163,10 @@ function update($id)
 function update_action($id)
 {
   if ($this->input->is_ajax_request()) {
-      if (!$this->is_allowed('menu_update',false)) {
-        return $this->response([
-        'permission' => 'sorry_you_do_not_have_permission_to_access'
-        ]);
-      }
+    if (!is_allowed('menu_update')) {
+      show_error("Access Permission", 403,'403::Access Not Permission');
+      exit();
+    }
 
         $json = array('success'=>false, 'alert'=>array());
         $this->_rules();
@@ -213,7 +211,7 @@ function update_action($id)
 
 function delete($id)
 {
-    if (!$this->is_allowed('menu_delete',false)) {
+    if (is_allowed('menu_delete')) {
       set_message("error","do not have permission to access");
     }else {
       $cek_child = $this->db->get_where("main_menu",["is_parent"=>dec_url($id)]);

@@ -88,7 +88,7 @@ class Filemanager extends Backend{
 
   function add()
   {
-    $this->is_allowed('filemanager_add');
+    // $this->is_allowed('filemanager_add');
     $this->template->set_title(cclang("add")." $this->title");
     $data = array('action' => site_url("backend/filemanager/add_action"),
                   'params' => "add",
@@ -101,10 +101,9 @@ class Filemanager extends Backend{
   function add_action()
   {
     if($this->input->is_ajax_request()){
-      if (!$this->is_allowed('filemanager_add',false)) {
-        return $this->response([
-        'is_allowed' => 'Sorry you do not have permission to access'
-        ]);
+      if (!is_allowed('filemanager_add')) {
+        show_error("Access Permission", 403,'403::Access Not Permission');
+        exit();
       }
 
       $json = array('success' => false, "alert" => array());
