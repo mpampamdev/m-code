@@ -11,18 +11,29 @@
 <li>ajax crud</li>
 <li>Serverside datatable</li>
 <li>Bulilt in PHP V.7.4</li>
+<li>CI Version 3.1.11</li>
 </ul>
 
 
 https://localhost/namaproject/backend/login
 
-akses login super super ++ admin
-email : mpampam@dev.com
-pass : 123456
+akses login super super ++ admin<br>
+email : mpampam@dev.com<br>
+pass : 123456<br>
 
-Youtube:
-https://youtu.be/9g9Z56_PTYo
-facebook:
-https://web.facebook.com/mpampam/
-fanspage:
-https://web.facebook.com/programmerjalanan
+Youtube:<br>
+https://youtu.be/9g9Z56_PTYo<br>
+facebook:<br>
+https://web.facebook.com/mpampam<br>
+fanspage:<br>
+https://web.facebook.com/programmerjalanan<br>
+
+
+
+
+Untuk membantu kami mengembangkan tools ini bisa dengan cara donasi buat ngopi  :)
+
+BNI 0330538612 / Muh.irfan ibnu
+
+
+#salam_keyboard!!!! :)
