@@ -36,11 +36,11 @@ class {controller_class} extends Backend{
   function json()
   {
     if ($this->input->is_ajax_request()) {
-    if (!$this->is_allowed('{controller_title}_list',false)) {
-      return $this->response([
-      'is_allowed' => 'sorry you do not have permission to access'
-      ]);
-    }
+      if (!is_allowed('{controller_title}user_list')) {
+        show_error("Access Permission", 403,'403::Access Not Permission');
+        exit();
+      }
+
       $rows = $this->model->get_datatables();
       $data = array();
       foreach ($rows as $get) {
@@ -105,10 +105,9 @@ class {controller_class} extends Backend{
   function add_action()
   {
     if($this->input->is_ajax_request()){
-      if (!$this->is_allowed('{controller_title}_add',false)) {
-        return $this->response([
-        'is_allowed' => 'Sorry you do not have permission to access'
-        ]);
+      if (!is_allowed('{controller_title}_add')) {
+        show_error("Access Permission", 403,'403::Access Not Permission');
+        exit();
       }
 
       $json = array('success' => false, "alert" => array());
@@ -144,10 +143,9 @@ class {controller_class} extends Backend{
   function update_action($id = null)
   {
     if($this->input->is_ajax_request()){
-      if (!$this->is_allowed('{controller_title}_update',false)) {
-        return $this->response([
-        'is_allowed' => 'sorry_you_do_not_have_permission_to_access'
-        ]);
+      if (!is_allowed('{controller_title}_update')) {
+        show_error("Access Permission", 403,'403::Access Not Permission');
+        exit();
       }
 
       $json = array('success' => false, "alert" => array());
