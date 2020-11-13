@@ -47,7 +47,7 @@ class Filemanager extends Backend{
       $data = array();
       foreach ($rows as $get) {
           $row = array();
-					$row[] = $get->file_name;
+					$row[] = "<span class='text-primary'>$get->file_name</span>";
           $row[] = $get->ket;
           $row[] = date('d/m/Y H:i', strtotime($get->created));
           $row[] = '

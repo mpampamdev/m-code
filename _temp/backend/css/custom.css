@@ -49,16 +49,13 @@
     width: 100%!important;
   }
 
-  .table-wrap{
-    white-space: normal!important;
-      /* word-wrap: break-word!important; */
-      /* line-height: 18px!important; */
-      width: auto!important
-      /* text-align: justify; */
-  }
 
   .table td{
     padding: 0.9999rem 0.9375rem!important;
+    white-space:inherit!important;
+    line-height: 20px!important;
+    word-wrap: break-word!important;
+  /* max-width: 400px!important; */
   }
 
   .table-level{
@@ -404,7 +401,7 @@ border-color: #166ac1!important;
   height: 2rem!important
 }
 
-/* 
+/*
 .form-control-sm{
   height: 2.3999rem!important
 } */
