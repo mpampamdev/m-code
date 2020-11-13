@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config['time_zone'] = "{time_zone}";
 date_default_timezone_set($config['time_zone']);
+//max upload Kb
+$config['max_upload'] = {max_upload};
 /*
 |--------------------------------------------------------------------------
 | Base Site URL

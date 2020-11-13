@@ -33,7 +33,8 @@ class Setting extends Backend{
                       'language' => $this->config->item("language"),
                       'encryption_key' => $this->config->item("encryption_key"),
                       'encryption_url' => $enc_url,
-                      'url_suffix' => $this->config->item("url_suffix")
+                      'url_suffix' => $this->config->item("url_suffix"),
+                      'max_upload' => $this->config->item("max_upload")
                       );
 
       $pk = $this->input->post("pk", true);

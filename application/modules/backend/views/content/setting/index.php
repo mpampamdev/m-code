@@ -168,6 +168,13 @@
               </tr>
 
               <tr>
+                <td class="table-title">Max Upload</td>
+                <td>
+                  <a href="javascript:void(0);" id="max_upload" data-url="<?=site_url("backend/setting/update_action")?>" data-type="text" data-pk="999" class="editable editable-click" title="<?=cclang("update")?>"><?=$this->config->item("max_upload")?></a> Kb
+                </td>
+              </tr>
+
+              <tr>
                 <td class="table-title"><?=cclang("language")?></td>
                 <td>
                   <a href="javascript:void(0);" id="language" data-url="<?=site_url("backend/setting/update_action")?>" data-type="select" data-value="<?=$this->config->item("language")?>" data-pk="999" class="editable editable-click" title="<?=cclang("update")?>"><?=$this->config->item("language")?></a>
@@ -344,6 +351,15 @@ $(document).ready(function(){
        return data.msg;
      }else {
        location.href='<?=base_url("backend/setting")?>'+newValue;
+     }
+   }
+  });
+
+  $('#max_upload').editable({
+    inputclass: 'form-control-sm',
+    success: function(data) {
+     if (data.success != true) {
+       return data.msg;
      }
    }
   });

@@ -87,9 +87,10 @@ class Backend extends CI_Controller{
     if ($this->input->is_ajax_request()) {
       $json = array('success' => false );
       $this->load->helper('file');
+      $max_upload = $this->config->item('max_upload');
       // $hash = sha1()
       if (!empty($_FILES['file']['name'])) {
-          if ($_FILES['file']['size'] <= 1000000) {
+          if ($_FILES['file']['size'] <= $max_upload."000") {
             $dir = sess('id_user')."-".sha1(date("Y-m-d"));
             $path = FCPATH . '/_temp/uploads/tmp';
 
@@ -102,7 +103,7 @@ class Backend extends CI_Controller{
             $config = [
       			'upload_path' 		=> './_temp/uploads/tmp/' . $dir . '/',
       			'allowed_types' 	=> 'png|jpeg|jpg|gif',
-      			'max_size'  		  => 1000,
+      			'max_size'  		  => $max_upload,
             'max_filename'    => '20'
       		];
 
@@ -121,7 +122,7 @@ class Backend extends CI_Controller{
       			];
           }
           }else {
-            $json['msg'] 	=  "Max file upload 1 MB";
+            $json['msg'] 	=  "Max file upload $max_upload Kb";
           }
       }else {
         $json['select'] = false;
