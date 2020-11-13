@@ -78,6 +78,30 @@
         </div>
     <?php endif; ?>
 
+    <?php if (is_allowed("dashboard_view_total_permission")): ?>
+        <div class="card">
+          <div class="card-body">
+            <p class="card-title text-md-center text-xl-left">Total Permission</p>
+            <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+              <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0"><?=$this->model->get_data("auth_permission")->num_rows()?></h3>
+              <i class="mdi mdi-buffer icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+            </div>
+          </div>
+        </div>
+    <?php endif; ?>
+
+    <?php if (is_allowed("dashboard_view_total_permission")): ?>
+        <div class="card">
+          <div class="card-body">
+            <p class="card-title text-md-center text-xl-left">Total Filemanager</p>
+            <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+              <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0"><?=$this->model->get_data("filemanager")->num_rows()?></h3>
+              <i class="mdi mdi-file-image icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+            </div>
+          </div>
+        </div>
+    <?php endif; ?>
+
   </div>
 </div>
 
