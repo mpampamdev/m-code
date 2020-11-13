@@ -11,7 +11,7 @@
  Target Server Version : 100414
  File Encoding         : 65001
 
- Date: 14/11/2020 00:43:10
+ Date: 14/11/2020 01:25:21
 */
 
 SET NAMES utf8mb4;
@@ -43,7 +43,7 @@ CREATE TABLE `auth_permission`  (
   `permission` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `definition` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 234 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 239 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of auth_permission
@@ -304,21 +304,7 @@ CREATE TABLE `filemanager`  (
   `created` datetime(0) NULL DEFAULT NULL,
   `update` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of filemanager
--- ----------------------------
-INSERT INTO `filemanager` VALUES (15, '20201108020110-posisi_standar_a.jpg', 'Di upload melalu module Test Module', '2020-11-08 02:01:00', NULL);
-INSERT INTO `filemanager` VALUES (16, '85a8fd633c-529px-BUMN_Hadir.png', 'Di upload melalui module File manager', '2020-11-09 21:39:54', NULL);
-INSERT INTO `filemanager` VALUES (17, 'cb5a5cf117-doctor_icon_1348.png', 'Di upload melalui module File manager', '2020-11-09 21:40:18', NULL);
-INSERT INTO `filemanager` VALUES (18, '533bb2b82b-1678983414.png', 'Di upload melalui module Profile', '2020-11-10 14:50:00', NULL);
-INSERT INTO `filemanager` VALUES (20, 'CWvLr-Capture.PNG', 'Di upload melalui module title', '2020-11-14 00:53:00', NULL);
-INSERT INTO `filemanager` VALUES (21, 'Fu4wdhX3no-contoh_jie.png', 'Di upload melalui module title', '2020-11-14 00:55:00', NULL);
-INSERT INTO `filemanager` VALUES (22, 'rIt7iTgwOT_1455555011_users.png', 'Di upload melalui module title', '2020-11-14 01:02:00', NULL);
-INSERT INTO `filemanager` VALUES (23, '14112020010646_1455555011_users.png', 'Di upload melalui module title', '2020-11-14 01:06:00', NULL);
-INSERT INTO `filemanager` VALUES (24, '141120010733_contoh_jie.png', 'Di upload melalui module title', '2020-11-14 01:07:00', NULL);
-INSERT INTO `filemanager` VALUES (25, '141120011348_WhatsApp_Image_.jpeg', 'Di upload melalui module title', '2020-11-14 01:13:00', NULL);
+) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for main_menu
