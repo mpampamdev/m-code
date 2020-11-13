@@ -32,6 +32,23 @@ function randomKey($length = 32)
 }
 
 
+function imgView($class = "img-thumbnail" , $img = "")
+{
+  $str ='';
+  if ($img!="") {
+    $str.='<a href="'.base_url().'_temp/uploads/img/'.$img.'" data-fancybox="gallery">
+              <img src="'.base_url().'_temp/uploads/img/'.$img.'" alt="'.$img.'" class="'.$class.'" />
+            </a>';
+  }else {
+    $str.='<a href="'.base_url().'_temp/uploads/noimage.jpg" data-fancybox="gallery">
+              <img src="'.base_url().'_temp/uploads/noimage.jpg" alt="noimage" class="'.$class.'" />
+            </a>';
+  }
+
+  return $str;
+}
+
+
 function readJSON($path)
 {
     $string = file_get_contents($path);
