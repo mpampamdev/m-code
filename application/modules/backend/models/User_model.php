@@ -15,8 +15,10 @@ class User_model extends MY_Model{
                   auth_user.name,
                   auth_user.email,
                   auth_user.is_active,
+                  auth_user.photo,
                   auth_user.is_delete,
                   auth_user.created,
+                  auth_user.last_login,
                   auth_group.group";
 
   private function _get_datatables_query()

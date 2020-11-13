@@ -11,10 +11,12 @@
         <table class="table table-bordered table-striped" id="table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
           <thead>
             <tr>
-              <th>Name</th>
+              <th>#</th>
+              <th>Full Name</th>
               <th>Email</th>
               <th>Group</th>
               <th>Is Active</th>
+              <th>Last login</th>
               <th>#</th>
             </tr>
           </thead>
@@ -53,7 +55,12 @@ var table;
       //Set column definition initialisation properties.
         "columnDefs": [
         {
+            "className": "text-center",
             "targets": 0, //first column / numbering column
+            "orderable": false
+        },
+        {
+            "targets": 1, //first column / numbering column
             "orderable": false
         },
         {
@@ -70,6 +77,16 @@ var table;
             "className": "text-center",
             "orderable": false,
             "targets": 4
+        },
+        {
+            "className": "text-center",
+            "orderable": false,
+            "targets": 5
+        },
+        {
+            "className": "text-center",
+            "orderable": false,
+            "targets": 6
         }
       ],
     });

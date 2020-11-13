@@ -137,7 +137,7 @@ class Backend extends CI_Controller{
     $file_dir = $_POST['file-dir'];
     if (!empty($file_dir)) {
       if (!empty($img_name)) {
-        $image_copy = randomKey(5) . '-' . $img_name;
+        $image_copy = date("dmyHis") . '_' . str_replace("-","_",$img_name);
           rename(FCPATH . '/_temp/uploads/tmp/' . $file_dir . '/' . $img_name,
                  FCPATH . '/_temp/uploads/img/' . $image_copy);
 

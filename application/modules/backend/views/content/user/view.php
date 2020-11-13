@@ -17,6 +17,13 @@
           </tr>
 
           <tr>
+            <td>Photo</td>
+            <td>
+              <?=imgView('img-thumbnail', $photo);?>
+            </td>
+          </tr>
+
+          <tr>
             <td>Group</td>
             <td><?=$group?></td>
           </tr>
@@ -25,6 +32,17 @@
             <td>Is_active</td>
             <td><?=$is_active == "1" ? '<i class="mdi mdi-eye text-success"></i> Y':'<i class="mdi mdi-eye-off text-danger"></i> N'?></td>
           </tr>
+
+          <tr>
+            <td>Last login</td>
+            <td><?=$last_login == "" ? "Null": date("d/m/Y H:i",strtotime($last_login))?></td>
+          </tr>
+
+          <tr>
+            <td>Join</td>
+            <td><?=$created == "" ? "Null": date("d/m/Y H:i",strtotime($created))?></td>
+          </tr>
+
         </table>
 
         <a href="<?=site_url("backend/".$this->uri->segment(2))?>" class="btn btn-sm btn-danger mt-3"><?=cclang("back")?></a>

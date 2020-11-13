@@ -37,9 +37,23 @@
               <input class="form-control" type="text" name="email" id="email" value="<?=$email?>">
           </div>
 
+          <div class="form-group">
+					<label>Image</label>
+						<input type="file" name="img" class="file-upload-default" />
+							<div class="input-group col-xs-12">
+								<input type="hidden" class="file-dir" name="file-dir" />
+								<input type="text" class="form-control form-control-sm file-upload-info file-name" readonly name="photo" value="<?=$file_name?>" />
+									<span class="input-group-append">
+										<button class="btn-remove-image btn btn-danger btn-sm" type="button" style="display:<?=$file_name!=''?'block':'none'?>;"><i class="ti-trash"></i></button>
+										<button class="file-upload-browse btn btn-primary btn-sm" type="button">Select File</button>
+									</span>
+							</div>
+						<div id="file_name"></div>
+					</div>
+
           <?php if ($button=="update"): ?>
             <input class="form-control" type="hidden" name="last_email" id="last_email" value="<?=$email?>">
-            <p class="text-primary" style="font-size:12px">* Do not fill in if you do not want to change the password</p>
+            <p class="text-primary" style="font-size:12px">* Leave it blank if you don't want to change the password</p>
           <?php endif; ?>
 
           <div class="form-group">
