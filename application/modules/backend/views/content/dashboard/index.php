@@ -90,7 +90,7 @@
         </div>
     <?php endif; ?>
 
-    <?php if (is_allowed("dashboard_view_total_permission")): ?>
+    <?php if (is_allowed("dashboard_view_total_filemanager")): ?>
         <div class="card">
           <div class="card-body">
             <p class="card-title text-md-center text-xl-left">Total Filemanager</p>
