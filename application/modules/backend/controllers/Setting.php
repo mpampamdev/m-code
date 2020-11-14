@@ -49,8 +49,10 @@ class Setting extends Backend{
         ]);
       }
 
-      if ($pk == "4") {
+      if ($name == "email") {
         $this->form_validation->set_rules("value","* ","trim|xss_clean|required|valid_email");
+      }elseif($name == "max_upload"){
+        $this->form_validation->set_rules("value","* ","trim|xss_clean|required|numeric");
       }else {
         $this->form_validation->set_rules("value","* ","trim|xss_clean|required");
       }
