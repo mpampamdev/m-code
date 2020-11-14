@@ -21,7 +21,7 @@ Before starting, please import the default database in the folder db/db.sql
 akses login super super ++ admin<br>
 email : mpampam@dev.com<br>
 pass : 123456<br>
-<hr>  
+  
 to access the mcrud module please https://localhost/namaproject/mcrud
 
 Youtube:<br>
