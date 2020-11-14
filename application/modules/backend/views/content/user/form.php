@@ -12,24 +12,39 @@
               <input class="form-control" type="text" name="nama" id="nama" value="<?=$nama?>">
           </div>
 
+          <?php if ($id_group == 1): ?>
+            <div class="form-group">
+                <label for="example-search-input" class="">Group</label>
+                <input type="text" class="form-control" readonly value="xadmin">
+                <input type="hidden" name="id_group" id="id_group" value="<?=$id_group?>">
+            </div>
+            <?php else: ?>
+              <div class="form-group">
+                  <label for="example-search-input" class="">Group</label>
+                    <!-- is_combo($table,$id_name,$id_field,$name_field,$value) -->
+                    <?=is_combo("auth_group","id_group","id","group",$id_group)?>
+              </div>
+          <?php endif; ?>
 
-          <div class="form-group">
-              <label for="example-search-input" class="">Group</label>
-                <!-- is_combo($table,$id_name,$id_field,$name_field,$value) -->
-                <?=is_combo("auth_group","id_group","id","group",$id_group)?>
-          </div>
+          <?php if ($id_group == 1): ?>
+            <div class="form-group">
+                <label for="example-search-input" class="">Is Active</label>
+                <input type="text" class="form-control" readonly value="Y">
+                <input type="hidden" name="is_active" id="is_active" value="<?=$is_active?>">
+            </div>
+            <?php else: ?>
+              <div class="form-group">
+                  <label for="example-search-input" class="">Is Active</label>
+                  <select class="form-control" name="is_active" id="is_active">
+                    <?php if ($button == "tambah"): ?>
+                      <option value="">-- Select --</option>
+                    <?php endif; ?>
+                    <option <?=($is_active=="1") ? 'selected':''?> value="1">Y</option>
+                    <option <?=($is_active=="0") ? 'selected':''?> value="0">N</option>
+                  </select>
+              </div>
+          <?php endif; ?>
 
-
-          <div class="form-group">
-              <label for="example-search-input" class="">Is Active</label>
-              <select class="form-control" name="is_active" id="is_active">
-                <?php if ($button == "tambah"): ?>
-                  <option value="">-- Select --</option>
-                <?php endif; ?>
-                <option <?=($is_active=="1") ? 'selected':''?> value="1">Y</option>
-                <option <?=($is_active=="0") ? 'selected':''?> value="0">N</option>
-              </select>
-          </div>
 
 
           <div class="form-group">

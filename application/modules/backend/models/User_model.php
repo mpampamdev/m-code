@@ -28,7 +28,9 @@ class User_model extends MY_Model{
       $this->db->join("auth_user","auth_user.id_user = auth_user_to_group.id_user");
       $this->db->join("auth_group","auth_group.id = auth_user_to_group.id_group","left");
       $this->db->where("auth_user.is_delete","0");
-      $this->db->where("auth_user_to_group.id_user !=","1");
+      if (sess("id_user")!= 1) {
+        $this->db->where("auth_user_to_group.id_user !=","1");
+      }
 
       if(isset($_POST['order'])) // here order processing
        {
@@ -66,7 +68,9 @@ class User_model extends MY_Model{
         $this->db->join("auth_user","auth_user.id_user = auth_user_to_group.id_user");
         $this->db->join("auth_group","auth_group.id = auth_user_to_group.id_group","left");
         $this->db->where("auth_user.is_delete","0");
-        $this->db->where("auth_user_to_group.id_user !=","1");
+        if (sess("id_user")!= 1) {
+          $this->db->where("auth_user_to_group.id_user !=","1");
+        }
         return $this->db->count_all_results();
     }
 
@@ -78,7 +82,9 @@ class User_model extends MY_Model{
       $this->db->join("auth_user","auth_user.id_user = auth_user_to_group.id_user");
       $this->db->join("auth_group","auth_group.id = auth_user_to_group.id_group","left");
       $this->db->where("auth_user.is_delete","0");
-      $this->db->where("auth_user_to_group.id_user !=","1");
+      if (sess("id_user")!= 1) {
+        $this->db->where("auth_user_to_group.id_user !=","1");
+      }
       $this->db->where("auth_user.id_user",$id);
       return $this->db->get()->row();
     }
