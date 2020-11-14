@@ -82,6 +82,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<p>to access the backend module please click here <a href="<?=site_url()?>backend/login.html">Dashboard Apps</a>.</p>
 		<code>Username : mpampam@dev.com <br> password : 123456 </code>
 
+		<p>to access the mcrud module please click here <a href="<?=site_url()?>mcrud" target="_blank">MCRUD Apps</a>.</p>
+
+
 	</div>
 
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
