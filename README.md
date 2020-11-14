@@ -17,9 +17,12 @@
 
 https://localhost/namaproject/backend/login
 
+Before starting, please import the default database in the folder db/db.sql
 akses login super super ++ admin<br>
 email : mpampam@dev.com<br>
 pass : 123456<br>
+
+<p>to access the mcrud module please click here <a href="<?=site_url()?>mcrud" target="_blank">MCRUD Apps</a>.</p>
 
 Youtube:<br>
 https://youtu.be/9g9Z56_PTYo<br>
