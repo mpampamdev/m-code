@@ -69,7 +69,7 @@ function save()
 function _rules()
  {
 
-   $rule = $_POST['type'] == "url" ? "|callback__valid_url":"";
+   $rule = $_POST['type'] == "url" ? "|valid_url":"";
    $this->form_validation->set_rules("menu","&nbsp;*&nbsp;","trim|xss_clean|required");
    $this->form_validation->set_rules("is_parent","&nbsp;*&nbsp;","trim|xss_clean|numeric|required");
    $this->form_validation->set_rules("is_active","&nbsp;*&nbsp;","trim|xss_clean|numeric|required");
