@@ -11,9 +11,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User extends Backend{
 
+  private $title = "User";
+
   public function __construct()
   {
-    parent::__construct();
+    $config = array(
+      'title' => $this->title,
+		 );
+		parent::__construct($config);
     $this->load->model("User_model","model");
   }
 
