@@ -64,4 +64,11 @@ class Core extends Backend{
     $this->template->view("backend/content/core/error403");
   }
 
+
+  function maintenance()
+  {
+    $this->template->set_title("Maintenance");
+    $this->template->view("backend/content/core/maintenance");
+  }
+
 }

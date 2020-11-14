@@ -29,7 +29,15 @@ class Template
         $header_params['main_menu'] = $this->CI->load->view("backend/menu",[],true);
         $this->CI->load->view('header',$header_params);
         // $this->CI->load->view(config_item("cpanel").'sidebar',$header_params);
-        $this->CI->load->view($view_name,$params);
+        if (profile("id_group") != 1) {
+          if (setting("maintenance_status") == "Y") {
+            $this->CI->load->view("backend/content/core/maintenance");
+          }else {
+            $this->CI->load->view($view_name,$params);
+          }
+        }else {
+          $this->CI->load->view($view_name,$params);
+        }
         $this->CI->load->view('footer');
       }else {
         $this->CI->load->view($view_name,$params);

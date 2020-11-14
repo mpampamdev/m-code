@@ -55,4 +55,6 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['mcrud'] = 'mcrud/Mcrud';
 
+$route['maintenance'] = 'backend/core/maintenance';
+
 $route['logout'] = 'backend/login/logout';
