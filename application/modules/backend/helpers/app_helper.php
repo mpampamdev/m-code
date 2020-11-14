@@ -35,6 +35,7 @@ if(!function_exists('profile')) {
 	                          auth_user.email AS email,
 	                          auth_user.`password` AS password,
 	                          auth_user.token AS token,
+														auth_user.photo AS photo,
 	                          auth_user.is_active AS is_active,
 														auth_user.last_login AS last_login,
 	                          auth_user.created AS created,

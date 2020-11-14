@@ -62,7 +62,12 @@
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="<?=base_url()?>_temp/backend/logo-user.png" alt="profile"/>
+              <?php if (profile('photo') == ""): ?>
+                  <img src="<?=base_url()?>_temp/backend/logo-user.png" alt="profile"/>
+                <?php else: ?>
+                  <img src="<?=base_url()?>_temp/uploads/img/<?=profile('photo')?>" alt="profile"/>
+              <?php endif; ?>
+
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item" id="reset-pwd" href="<?=site_url("backend/core/reset_password")?>">
