@@ -22,7 +22,7 @@ akses login super super ++ admin<br>
 email : mpampam@dev.com<br>
 pass : 123456<br>
 
-<p>to access the mcrud module please click here <a href="<?=site_url()?>mcrud" target="_blank">MCRUD Apps</a>.</p>
+<p>to access the mcrud module please https://localhost/namaproject/mcrud</p>
 
 Youtube:<br>
 https://youtu.be/9g9Z56_PTYo<br>
