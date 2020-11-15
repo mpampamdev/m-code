@@ -60,6 +60,7 @@
             <label for=""><?=cclang("rules_form_validation")?></label>
              <select class="js-multiple-select form-control" style="width:100%!important" name="rules[<?=$fields->name?>][]" id="rules[<?=$fields->name?>][]" multiple="multiple" >
                <option selected value="required">required</option>
+               <option value="htmlspecialchars">htmlspecialchars</option>
                <option value="numeric">numeric</option>
                <option value="alpha">alpha</option>
                <option value="alpha_numeric">alpha_numeric</option>
