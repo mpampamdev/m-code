@@ -19,7 +19,7 @@
           <div class="card-body">
             <h3 class="card-title"><?=cclang("profile_user")?></h3>
             <div class="text-center">
-              <?=imgView(profile("photo"),"img-thumbnail bg-primary","border-radius:100%;height:100px;width:100px;margin-bottom:10px;")?>
+              <?=imgView(profile("photo"),"img-thumbnail","border-radius:100%;height:100px;width:100px;margin-bottom:10px;border:3px solid #c2c2c2")?>
             </div>
 
             <table class="table-profile">
