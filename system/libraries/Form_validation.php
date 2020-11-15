@@ -1619,4 +1619,9 @@ class CI_Form_validation {
 		return $this;
 	}
 
+	public function htmlspecialchars($str)
+	{
+		return htmlentities($str);
+	}
+
 }

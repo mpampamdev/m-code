@@ -19,8 +19,8 @@ class Permission extends Backend{
 
   function _rules()
   {
-    $this->form_validation->set_rules("permission","*&nbsp;","trim|xss_clean|required|alpha_underscores|callback__cek_perms");
-    $this->form_validation->set_rules("definition","*&nbsp;","trim|xss_clean");
+    $this->form_validation->set_rules("permission","*&nbsp;","trim|xss_clean|htmlspecialchars|required|alpha_underscores|callback__cek_perms");
+    $this->form_validation->set_rules("definition","*&nbsp;","trim|xss_clean|htmlspecialchars");
     $this->form_validation->set_error_delimiters('<i class="error text-danger" style="font-size:11px">','</i>');
   }
 

@@ -19,10 +19,8 @@ class Group extends Backend{
 
   function _rules()
   {
-    $this->form_validation->set_rules("group","*&nbsp;","trim|xss_clean|required|alpha",[
-      "alpha" => " *&nbsp;Hanya dapat berisi karakter abjad tanpa spasi"
-    ]);
-    $this->form_validation->set_rules("definition","*&nbsp;","trim|xss_clean");
+    $this->form_validation->set_rules("group","*&nbsp;","trim|xss_clean|htmlspecialchars|required|alpha");
+    $this->form_validation->set_rules("definition","*&nbsp;","trim|xss_clean|htmlspecialchars");
     $this->form_validation->set_error_delimiters('<i class="error text-danger" style="font-size:11px">','</i>');
   }
 

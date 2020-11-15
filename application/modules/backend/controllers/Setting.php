@@ -54,7 +54,7 @@ class Setting extends Backend{
       }elseif($name == "max_upload"){
         $this->form_validation->set_rules("value","* ","trim|xss_clean|required|numeric");
       }else {
-        $this->form_validation->set_rules("value","* ","trim|xss_clean|required");
+        $this->form_validation->set_rules("value","* ","trim|xss_clean|htmlspecialchars|required");
       }
       $this->form_validation->set_error_delimiters('','');
 

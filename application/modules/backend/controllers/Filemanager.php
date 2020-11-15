@@ -24,7 +24,7 @@ class Filemanager extends Backend{
 
   function _rules()
   {
-		$this->form_validation->set_rules('file_name', 'File Name', 'trim|xss_clean|required');
+		$this->form_validation->set_rules('file_name', 'File Name', 'trim|xss_clean|htmlspecialchars|required');
 		$this->form_validation->set_error_delimiters('<i class="text-danger" style="font-size:11px">', '</i>');
   }
 

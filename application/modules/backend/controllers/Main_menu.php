@@ -70,13 +70,13 @@ function _rules()
  {
 
    $rule = $_POST['type'] == "url" ? "|valid_url":"";
-   $this->form_validation->set_rules("menu","&nbsp;*&nbsp;","trim|xss_clean|required");
+   $this->form_validation->set_rules("menu","&nbsp;*&nbsp;","trim|xss_clean|htmlspecialchars|required");
    $this->form_validation->set_rules("is_parent","&nbsp;*&nbsp;","trim|xss_clean|numeric|required");
    $this->form_validation->set_rules("is_active","&nbsp;*&nbsp;","trim|xss_clean|numeric|required");
    $this->form_validation->set_rules("type","&nbsp;*&nbsp;","trim|xss_clean|required");
-   $this->form_validation->set_rules("data_target","&nbsp;*&nbsp;","trim|xss_clean");
-   $this->form_validation->set_rules('controller', '&nbsp;*&nbsp;', "trim|xss_clean$rule");
-   $this->form_validation->set_rules('icon', '&nbsp;*&nbsp;', 'trim|xss_clean');
+   $this->form_validation->set_rules("data_target","&nbsp;*&nbsp;","trim|htmlspecialchars|xss_clean");
+   $this->form_validation->set_rules('controller', '&nbsp;*&nbsp;', "trim|htmlspecialchars|xss_clean$rule");
+   $this->form_validation->set_rules('icon', '&nbsp;*&nbsp;', 'trim|htmlspecialchars|xss_clean');
    $this->form_validation->set_error_delimiters('<span class="error text-danger" style="font-size:11px">','</span>');
  }
 
