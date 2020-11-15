@@ -32,16 +32,16 @@ function randomKey($length = 32)
 }
 
 
-function imgView($class = "img-thumbnail" , $img = "")
+function imgView($img = "", $class = "img-thumbnail", $style = "")
 {
   $str ='';
   if ($img!="") {
     $str.='<a href="'.base_url().'_temp/uploads/img/'.$img.'" data-fancybox="gallery">
-              <img src="'.base_url().'_temp/uploads/img/'.$img.'" alt="'.$img.'" class="'.$class.'" />
+              <img src="'.base_url().'_temp/uploads/img/'.$img.'" alt="'.$img.'" style="'.$style.'" class="'.$class.'" />
             </a>';
   }else {
     $str.='<a href="'.base_url().'_temp/uploads/noimage.jpg" data-fancybox="gallery">
-              <img src="'.base_url().'_temp/uploads/noimage.jpg" alt="noimage" class="'.$class.'" />
+              <img src="'.base_url().'_temp/uploads/noimage.jpg" alt="noimage" style="'.$style.'" class="'.$class.'" />
             </a>';
   }
 
