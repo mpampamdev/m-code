@@ -19,7 +19,7 @@
           <tr>
             <td>Photo</td>
             <td>
-              <?=imgView('img-thumbnail', $photo);?>
+              <?=imgView($photo);?>
             </td>
           </tr>
 

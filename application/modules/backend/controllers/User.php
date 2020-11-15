@@ -43,7 +43,7 @@ class User extends Backend{
       // $no = $_POST['start'];
       foreach ($list as $rows) {
           $row = array();
-          $row[] = imgView('img-thumbnail', $rows->photo);
+          $row[] = imgView($rows->photo);
           $row[] = $rows->name;
           $row[] = $rows->email;
           $row[] = $rows->group == "" ? '<i>Null</i>':ucfirst($rows->group);
