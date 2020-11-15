@@ -405,3 +405,7 @@ border-color: #166ac1!important;
 .form-control-sm{
   height: 2.3999rem!important
 } */
+
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-profile img{
+  border: 2px solid #0193c9;
+}
