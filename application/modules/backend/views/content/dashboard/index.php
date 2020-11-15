@@ -15,9 +15,13 @@
   <div class="col-lg-12 card-columns mt-3">
 
     <?php if (is_allowed("dashboard__view_profile_user")): ?>
-        <div class="card" style="min-height:238px">
+        <div class="card" style="min-height:363px">
           <div class="card-body">
             <h3 class="card-title"><?=cclang("profile_user")?></h3>
+            <div class="text-center">
+              <?=imgView(profile("photo"),"img-thumbnail bg-primary","border-radius:100%;height:100px;width:100px;margin-bottom:10px;")?>
+            </div>
+
             <table class="table-profile">
               <tr>
                 <td>Name</td>
