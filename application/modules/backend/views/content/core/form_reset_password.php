@@ -1,6 +1,6 @@
 <form id="form" action="<?=site_url("backend/core/reset_password_action")?>">
   <div class="form-group row">
-      <label class="col-sm-4 col-form-label">Password Lama</label>
+      <label class="col-sm-4 col-form-label">Password</label>
       <div class="col-sm-8">
           <input class="form-control" placeholder="******" type="password" name="password" id="password">
       </div>
@@ -9,14 +9,14 @@
   <hr>
 
   <div class="form-group row">
-      <label class="col-sm-4 col-form-label">Password Baru</label>
+      <label class="col-sm-4 col-form-label">New Password</label>
       <div class="col-sm-8">
           <input class="form-control" placeholder="******" type="password" name="password_baru" id="password_baru">
       </div>
   </div>
 
   <div class="form-group row">
-      <label class="col-sm-4 col-form-label">Konfirmasi Password</label>
+      <label class="col-sm-4 col-form-label">Confirmasi Password</label>
       <div class="col-sm-8">
           <input class="form-control" placeholder="******" type="password" name="konfirmasi_password" id="konfirmasi_password">
       </div>
