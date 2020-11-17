@@ -52,6 +52,53 @@ class Core extends Backend{
       }
   }
 
+  function imageUploadEditor()
+  {
+        $this->load->helper('file');
+        $max_upload = $this->config->item('max_upload');
+
+        $dir = sess('id_user')."-".sha1(date("Y-m-d"));
+        $path = FCPATH . '/_temp/uploads/tmp';
+
+        if (is_dir($path."/".$dir)) {
+          delete_files($path."/".$dir);
+        }else {
+          mkdir($path."/".$dir, 0777);
+        }
+
+        $config = [
+        'upload_path' 		=> './_temp/uploads/tmp/' . $dir . '/',
+        'allowed_types' 	=> 'png|jpeg|jpg|gif',
+        'max_size'  		  => $max_upload,
+        'max_filename'    => '20'
+      ];
+
+      $this->load->library('upload', $config);
+
+      if ($this->upload->do_upload('file')){
+        $upload_data = $this->upload->data();
+        $file_name 	= $upload_data['file_name'];
+        $file = $this->imageCopy($file_name, $dir, "Text editor (summernote)");
+        $json['success'] = true;
+        $json['file'] = base_url()."_temp/uploads/img/".$file;
+      }else {
+        $json['success'] = false;
+        $json['msg'] = "Format FIle : png | jpeg | jpg | gif , Max file upload $max_upload Kb";
+      }
+
+      echo json_encode($json);
+  }
+
+  // function imageRemoveEditor()
+  // {
+  //   $src = $this->input->post('src');
+  //   $file_name = str_replace(base_url()."_temp/uploads/img/", '', $src);
+  //   if(unlink("./_temp/uploads/img/".$file_name)){
+  //     $this->db->where('file_name', $file_name);
+  //     $this->db->delete('filemanager');
+  //   }
+  // }
+
 
   function icon()
   {
