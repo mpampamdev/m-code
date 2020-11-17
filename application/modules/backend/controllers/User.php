@@ -246,7 +246,7 @@ function view($id = null)
 function delete($id)
 {
   if ($this->input->is_ajax_request()) {
-    if (!$is_allowed('user_delete')) {
+    if (!is_allowed('user_delete')) {
       return $this->response([
         'type_msg' => "error",
         'msg' => "do not have permission to access"
