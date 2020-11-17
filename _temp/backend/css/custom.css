@@ -409,3 +409,13 @@ border-color: #166ac1!important;
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-profile img{
   border: 2px solid #a7a7a7;
 }
+
+/* // summernote */
+.note-toolbar .btn , .note-children-container .btn{
+    color:#383838!important;
+    background-color: #ffffff!important;
+}
+
+.modal-footer .btn, p{
+  margin:5px!important;
+}
