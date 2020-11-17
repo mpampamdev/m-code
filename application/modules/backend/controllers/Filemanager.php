@@ -47,6 +47,7 @@ class Filemanager extends Backend{
       $data = array();
       foreach ($rows as $get) {
           $row = array();
+          $row[] = imgView($get->file_name);
 					$row[] = "<span class='text-primary'>$get->file_name</span>";
           $row[] = $get->ket;
           $row[] = date('d/m/Y H:i', strtotime($get->created));
@@ -55,9 +56,6 @@ class Filemanager extends Backend{
                           <button type="button" data-text="'.base_url("_temp/uploads/img/$get->file_name").'" class="btn btn-warning" id="copyboard"  title="copy Url">
                             <i class="ti-files"></i>
                           </button>
-                          <a href="'.base_url("_temp/uploads/img/$get->file_name").'" id="detail" data-fancybox="images" class="btn btn-primary"  title="view">
-                            <i class="ti-file"></i>
-                          </a>
                           <a href="'.site_url("backend/filemanager/delete/".enc_url($get->id)).'" id="delete" class="btn btn-danger" title="'.cclang("delete").'">
                             <i class="ti-trash"></i>
                           </a>
@@ -109,7 +107,7 @@ class Filemanager extends Backend{
       $json = array('success' => false, "alert" => array());
       $this->_rules();
       if ($this->form_validation->run()) {
-				$save_data['file_name'] = $this->imageCopy($this->input->post('file_name',true));
+				$save_data['file_name'] = $this->imageCopy($this->input->post('file_name',true),$_POST['file-dir']);
         $save_data['ket'] = $this->input->post('ket',true);
 				$save_data['created'] = date('Y-m-d H:i:s');
 

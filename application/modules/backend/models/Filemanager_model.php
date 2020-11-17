@@ -11,7 +11,7 @@ class Filemanager_model extends MY_Model{
 
   private $table        = "filemanager";
   private $primary_key  = "id";
-  private $column_order = ["file_name"];
+  private $column_order = [];
   private $order        = ["id"=>"DESC"];
   private $select       = "id,file_name,ket,created";
 

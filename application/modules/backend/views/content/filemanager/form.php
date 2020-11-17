@@ -8,13 +8,13 @@
         <form id="form" action="<?=$action?>" autocomplete="off">
 					<div class="form-group">
 					<label>File Name</label>
-						<input type="file" name="img" class="file-upload-default" />
+						<input type="file" name="img" class="file-upload-default" data-id="filemanager"/>
 							<div class="input-group col-xs-12">
-								<input type="hidden" class="file-dir" name="file-dir" />
-								<input type="text" class="form-control form-control-sm file-upload-info file-name" readonly name="file_name" value="<?=$file_name?>" />
+								<input type="hidden" class="file-dir" name="file-dir" data-id="filemanager"/>
+								<input type="text" class="form-control form-control-sm file-upload-info file-name" data-id="filemanager" readonly name="file_name" value="<?=$file_name?>" />
 									<span class="input-group-append">
-										<button class="btn-remove-image btn btn-danger btn-sm" type="button" style="display:<?=$file_name!=''?'block':'none'?>;"><i class="ti-trash"></i></button>
-										<button class="file-upload-browse btn btn-primary btn-sm" type="button">Select File</button>
+										<button class="btn-remove-image btn btn-danger btn-sm" data-id="filemanager" type="button" style="display:<?=$file_name!=''?'block':'none'?>;"><i class="ti-trash"></i></button>
+										<button class="file-upload-browse btn btn-primary btn-sm" data-id="filemanager" type="button">Select File</button>
 									</span>
 							</div>
 						<div id="file_name"></div>

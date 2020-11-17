@@ -15,6 +15,7 @@
           <table class="table table-bordered table-striped" id="table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
             <thead>
               <tr>
+                <th>Image</th>
   							<th>File Name</th>
                 <th>Ket</th>
                 <th>Created</th>
@@ -50,15 +51,15 @@ var table;
           "url": BASE_URL + "backend/filemanager/json",
           "type": "POST",
           "data":function(data){
-		data.file_name = $("#file_name").val();
-    data.ket = $("#ket").val();
+      		data.file_name = $("#file_name").val();
+          data.ket = $("#ket").val();
           }
       },
 
       //Set column definition initialisation properties.
         "columnDefs": [
 					{
-              'orderable': true,
+              'orderable': false,
               'targets': 0
           },
           {
@@ -73,6 +74,11 @@ var table;
             'className': 'text-center',
             'orderable': false,
             'targets': 3
+          },
+          {
+            'className': 'text-center',
+            'orderable': false,
+            'targets': 4
           }
       ],
     });
