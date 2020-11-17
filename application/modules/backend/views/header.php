@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="<?=base_url()?>_temp/backend/vendors/jquery-toast-plugin/jquery.toast.min.css">
   <link href="<?=base_url()?>_temp/backend/vendors/datatables.net-bs4/dataTables.bootstrap4.css" rel="stylesheet">
   <link rel="stylesheet" href="<?=base_url()?>_temp/backend/vendors/fancybox/jquery.fancybox.min.css" />
+  <link rel="stylesheet" href="<?=base_url()?>_temp/backend/vendors/summernote/dist/summernote-bs4.css">
   <!-- End plugin css for this page -->
 
   <!-- plugins:js -->
@@ -27,6 +28,7 @@
   <script src="<?=base_url()?>_temp/backend/vendors/datatables.net/jquery.dataTables.js"></script>
   <script src="<?=base_url()?>_temp/backend/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
   <script src="<?=base_url()?>_temp/backend/vendors/fancybox/jquery.fancybox.min.js"></script>
+    <script src="<?=base_url()?>_temp/backend/vendors/summernote/dist/summernote-bs4.min.js"></script>
   <script src="<?=base_url()?>_temp/backend/vendors/clipboard/clipboard.min.js"></script>
   <script src="<?=base_url()?>_temp/backend/js/custom.js"></script>
   <!-- end plugins js -->

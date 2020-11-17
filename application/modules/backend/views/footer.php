@@ -55,12 +55,90 @@
       $("#modalGue").modal('show');
     });
 
+    if ($(".text-editor").length) {
+      $('.text-editor').summernote({
+        height: ($(window).height() - 250),
+        tabsize: 1,
+        minHeight: null,
+        maxHeight: null,
+        dialogsInBody: true,
+        dialogsFade: true,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold','italic', 'underline', 'clear']],
+          ['fontname', ['fontname']],
+          ['height', ['height']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen','codeview', 'help']],
+        ],
+        callbacks: {
+                    onImageUpload: function(image) {
+                        uploadImage(image[0]);
+                    },
+                    // onMediaDelete : function(target) {
+                    //     // deleteImage(target[0].src);
+                    //     alert(target);
+                    // },
+                    onInit: function(){
+                      $(document).on("click","button[data-original-title='Picture']",function(e){
+                        e.preventDefault();
+                        $("#filemanager-note").remove();
+                        $(".modal[aria-label='Insert Image'] .modal-body").append('<p id="filemanager-note"><a class="btn btn-sm btn-warning" target="_blank" href="'+BASE_URL+'backend/filemanager">Open Filemanager</a></p>');
+                      });
+
+                      $(document).on("click",".btn-fullscreen",function(e){
+                        e.preventDefault();
+                        var isFullscreen = $('.text-editor').summernote('fullscreen.isFullscreen');
+                        if (isFullscreen) {
+                          $(".fixed-top").css('z-index','0');
+                          $(".sidebar").css('z-index','0');
+                        }else {
+                          $(".fixed-top").css('z-index','1030');
+                          $(".sidebar").css('z-index','11');
+                        }
+
+                      });
+                    }
+                }
+      });
+
+
+      function uploadImage(image) {
+                var data = new FormData();
+                data.append("file", image);
+                $.ajax({
+                    url: BASE_URL+"backend/core/imageUploadEditor",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    type: "POST",
+                    dataType:'JSON',
+                    success: function(json) {
+                      if (json.success==true) {
+                        $('.text-editor').summernote("insertImage", json.file);
+                      }else {
+                        showToast('error',json.msg);
+                      }
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
+            }
+
+  }
+
 
    // upload single image
    $('.btn-remove-image').on('click',function(){
-     $('.btn-remove-image').hide();
-     $(".file-dir").val("");
-     $(".file-name").val("");
+     var data_id = $(this).data('id');
+     $(".btn-remove-image[data-id='"+data_id+"']").hide();
+     $(".file-dir[data-id='"+data_id+"']").val("");
+     $(".file-name[data-id='"+data_id+"']").val("");
      // $.ajax({
      //   url : BASE_URL +'backend/core/imageRemove',
      //   type:'POST',
@@ -80,15 +158,17 @@
 
 
    $('.file-upload-browse').on('click', function() {
-     var file = $('.file-upload-default');
-     file.trigger('click');
+     var data_id = $(this).data('id');
+     var file = $(".file-upload-default[data-id='"+data_id+"']");
+     file.focus().trigger('click');
    });
 
    $('.file-upload-default').on('change', function() {
-     $('.file-upload-browse').html(`<div class="spinner-border-custom spinner-border text-light" role="status"">
+     var data_id = $(this).data('id');
+     $(".file-upload-browse[data-id='"+data_id+"']").html(`<div class="spinner-border-custom spinner-border text-light" role="status"">
                                      <span class="sr-only">Loading...</span>
                                    </div>`);
-      var file_data = $(".file-upload-default").prop("files")[0];
+      var file_data = $(".file-upload-default[data-id='"+data_id+"']").prop("files")[0];
       var form_data = new FormData();
       form_data.append("file", file_data);
        $.ajax({
@@ -101,18 +181,18 @@
          processData: false,
          success:function(json)
          {
-           $('.file-upload-browse').html("Select File");
+           $(".file-upload-browse[data-id='"+data_id+"']").html("Select File");
            if (json.success!=true) {
-             $(".file-dir").val("");
-             $(".file-name").val("");
-             $('.btn-remove-image').hide();
+             $(".file-dir[data-id='"+data_id+"']").val("");
+             $(".file-name[data-id='"+data_id+"']").val("");
+             $(".btn-remove-image[data-id='"+data_id+"']").hide();
              showToast("error", json.msg);
            }else {
              if (json.select != false) {
-               $(".file-dir").val(json.file_dir);
-               $(".file-name").val(json.file_name);
-               if ($(".file-name").val() != "") {
-                 $('.btn-remove-image').show();
+               $(".file-dir[data-id='"+data_id+"']").val(json.file_dir);
+               $(".file-name[data-id='"+data_id+"']").val(json.file_name);
+               if ($(".file-name[data-id='"+data_id+"']").val() != "") {
+                 $(".btn-remove-image[data-id='"+data_id+"']").show();
                }
              }
              console.log(json.msg);
