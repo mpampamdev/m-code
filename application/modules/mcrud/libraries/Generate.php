@@ -94,6 +94,16 @@ class Generate
           $str.="\n\t\t\t\t\t\t<td>".field_title($key)."</td>";
           $str.="\n\t\t\t\t\t\t<td><?=$".$key."?></td>";
           $str.="\n\t\t\t\t\t</tr>\n";
+        }elseif($params=="detail"){
+          if ($value == "date") {
+            $str.="\n\t\t\t\t\t\t\t\t\t\t'".$key."' => date('d-m-Y',strtotime(\$row->".$key.")),";
+          }elseif($value == "time"){
+            $str.="\n\t\t\t\t\t\t\t\t\t\t'".$key."' => date('H:i',strtotime(\$row->".$key.")),";
+          }elseif ($value == "datetime-local") {
+            $str.="\n\t\t\t\t\t\t\t\t\t\t'".$key."' => dateTimeFormat(\$row->".$key."),";
+          }else {
+            $str.="\n\t\t\t\t\t\t\t\t\t\t'".$key."' => \$row->".$key.",";
+          }
         }else {
           if ($value == "date") {
             $str.="\n\t\t\t\t\t\t\t\t\t\t'".$key."' => set_value('".$key."',date('Y-m-d',strtotime(\$row->".$key."))),";
@@ -124,7 +134,7 @@ class Generate
       }elseif ($value == "datetime-local") {
         $str .= "\n\t\t\t\t\$save_data['".$key."'] = date('Y-m-d H:i',strtotime(\$this->input->post('".$key."',true)));";
       }elseif($value == "imageupload") {
-          $str .= "\n\t\t\t\t\$save_data['".$key."'] = \$this->imageCopy(\$this->input->post('".$key."',true));";
+          $str .= "\n\t\t\t\t\$save_data['".$key."'] = \$this->imageCopy(\$this->input->post('".$key."',true),\$_POST['file-dir-".$key."']);";
       }else {
         $str .= "\n\t\t\t\t\$save_data['".$key."'] = \$this->input->post('".$key."',true);";
       }
@@ -164,7 +174,7 @@ class Generate
       $field = count($show_in_table);
       if ($params == "thead") {
         foreach ($show_in_table as $key => $value) {
-          $str.= "\n\t\t\t\t\t\t\t<th>".field_title($key)."</th>";
+          $str.= "\n\t\t\t\t\t\t\t\t<th>".field_title($key)."</th>";
         }
       }elseif ($params == "column_defs") {
         for ($i=0; $i < $field ; $i++) {
@@ -200,7 +210,7 @@ class Generate
         }
       }elseif ($params == "data_filter") {
         foreach ($show_in_table as $key => $value) {
-          $str.="\n\t\tdata.".$key." = $(\"#".$key."\").val();";
+          $str.="\n\t\t\t\t\t\tdata.".$key." = $(\"#".$key."\").val();";
         }
       }elseif ($params == "filter_delete") {
         foreach ($show_in_table as $key => $value) {
@@ -231,16 +241,18 @@ class Generate
         }elseif($value == "textarea") {
           $str.="\n\t\t\t\t\t\t<textarea class=\"form-control\" rows=\"3\" name=\"".$key."\" id=\"".$key."\"><?=$".$key."?></textarea>";
         }elseif($value == "imageupload") {
-          $str.="\n\t\t\t\t\t\t<input type=\"file\" name=\"img\" class=\"file-upload-default\" />";
+          $str.="\n\t\t\t\t\t\t<input type=\"file\" name=\"img\" class=\"file-upload-default\" data-id=\"".$key."\"/>";
           $str.="\n\t\t\t\t\t\t\t<div class=\"input-group col-xs-12\">";
-          $str.="\n\t\t\t\t\t\t\t\t<input type=\"hidden\" class=\"file-dir\" name=\"file-dir\" />";
-          $str.="\n\t\t\t\t\t\t\t\t<input type=\"text\" class=\"form-control form-control-sm file-upload-info file-name\" readonly name=\"".$key."\" value=\"<?=$".$key."?>\" />";
+          $str.="\n\t\t\t\t\t\t\t\t<input type=\"hidden\" class=\"file-dir\" name=\"file-dir-".$key."\" data-id=\"".$key."\"/>";
+          $str.="\n\t\t\t\t\t\t\t\t<input type=\"text\" class=\"form-control form-control-sm file-upload-info file-name\" data-id=\"".$key."\" readonly name=\"".$key."\" value=\"<?=$".$key."?>\" />";
           $str.="\n\t\t\t\t\t\t\t\t\t<span class=\"input-group-append\">";
-          $str.="\n\t\t\t\t\t\t\t\t\t\t<button class=\"btn-remove-image btn btn-danger btn-sm\" type=\"button\" style=\"display:<?=$".$key."!=''?'block':'none'?>;\"><i class=\"ti-trash\"></i></button>";
-          $str.="\n\t\t\t\t\t\t\t\t\t\t<button class=\"file-upload-browse btn btn-primary btn-sm\" type=\"button\">Select File</button>";
+          $str.="\n\t\t\t\t\t\t\t\t\t\t<button class=\"btn-remove-image btn btn-danger btn-sm\" type=\"button\" data-id=\"".$key."\" style=\"display:<?=$".$key."!=''?'block':'none'?>;\"><i class=\"ti-trash\"></i></button>";
+          $str.="\n\t\t\t\t\t\t\t\t\t\t<button class=\"file-upload-browse btn btn-primary btn-sm\" data-id=\"".$key."\" type=\"button\">Select File</button>";
           $str.="\n\t\t\t\t\t\t\t\t\t</span>";
           $str.="\n\t\t\t\t\t\t\t</div>";
           $str.="\n\t\t\t\t\t\t<div id=\"".$key."\"></div>";
+        }elseif ($value == "text-editor") {
+          $str.="\n\t\t\t\t\t\t<textarea class=\"form-control text-editor\" rows=\"3\" name=\"".$key."\" id=\"".$key."\"><?=$".$key."?></textarea>";
         }
 
         $str.="\n\t\t\t\t\t</div>\n";

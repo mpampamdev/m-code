@@ -60,7 +60,6 @@
             <label for=""><?=cclang("rules_form_validation")?></label>
              <select class="js-multiple-select form-control" style="width:100%!important" name="rules[<?=$fields->name?>][]" id="rules[<?=$fields->name?>][]" multiple="multiple" >
                <option selected value="required">required</option>
-               <option value="htmlspecialchars">htmlspecialchars</option>
                <option value="numeric">numeric</option>
                <option value="alpha">alpha</option>
                <option value="alpha_numeric">alpha_numeric</option>
@@ -81,6 +80,7 @@
               <option value="text">text</option>
               <option value="textarea">textarea</option>
               <option value="imageupload">image-upload</option>
+              <option value="text-editor">text-editor (summernote)</option>
               <option value="date">date</option>
               <option value="time">time</option>
               <option value="datetime-local">datetime</option>
@@ -142,6 +142,7 @@ $(document).ready(function(){
                         .html('Create Module');
             $("#db-table").change().val("");
             $("#content").html("<h5 class='mt-4 ml-3'>Create Module Success</h5><ul class='success'></ul>");
+            $(".alert-module").html("");
               $.each(json.msg, function(key, value) {
                 $("#content ul").hide().fadeIn(300).append("<li><i class='mdi mdi-checkbox-multiple-marked-circle'></i> "+value+"</li>");
               });

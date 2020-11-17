@@ -133,6 +133,7 @@ class Mcrud extends CI_Controller{
       write_file(FCPATH . "/application/modules/backend/views/content/$dir/detail.php", $create_detail);
 
       $location = [
+        '<a class="btn btn-sm btn-info" href="'.site_url("backend/$controller_title").'" target="_blank"> Open Module</a>',
         "/application/modules/backend/controllers/$controller_file_name",
         "/application/modules/backend/models/$model_file_name",
         "/application/modules/backend/views/content/$dir/index.php",
