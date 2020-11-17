@@ -91,7 +91,7 @@ class Backend extends CI_Controller{
       // $hash = sha1()
       if (!empty($_FILES['file']['name'])) {
           if ($_FILES['file']['size'] <= $max_upload."000") {
-            $dir = sess('id_user')."-".sha1(date("Y-m-d"));
+            $dir = sess('id_user')."-".sha1(date("YmdHis"));
             $path = FCPATH . '/_temp/uploads/tmp';
 
             if (is_dir($path."/".$dir)) {
@@ -99,6 +99,10 @@ class Backend extends CI_Controller{
             }else {
               mkdir($path."/".$dir, 0777);
             }
+
+            // if (!is_dir($path."/".$dir)) {
+            //   mkdir($path."/".$dir, 0777);
+            // }
 
             $config = [
       			'upload_path' 		=> './_temp/uploads/tmp/' . $dir . '/',
@@ -133,14 +137,19 @@ class Backend extends CI_Controller{
   }
 
 
-  function imageCopy($img_name = null)
+  function imageCopy($img_name = null , $file_dir = '', $title="")
   {
-    $file_dir = $_POST['file-dir'];
+    // if (isset($_POST['file-dir'])) {
+    //   $file_dir = $_POST['file-dir'];
+    // }
+
     if (!empty($file_dir)) {
       if (!empty($img_name)) {
         $image_copy = date("dmyHis") . '_' . str_replace("-","_",$img_name);
           rename(FCPATH . '/_temp/uploads/tmp/' . $file_dir . '/' . $img_name,
                  FCPATH . '/_temp/uploads/img/' . $image_copy);
+
+          rmdir(FCPATH . '/_temp/uploads/tmp/' . $file_dir);
 
           if (!is_file(FCPATH . '/_temp/uploads/img/' . $image_copy)) {
             return $this->response([
@@ -152,9 +161,9 @@ class Backend extends CI_Controller{
 
           if ($this->uri->segment(2)!= "filemanager") {
             $this->db->insert("filemanager",[ "file_name" => $image_copy,
-                                            "ket" => "Di upload melalui module ". $this->title,
-                                            "created" => date("Y-m-d H:i")
-                                          ]);
+                                              "ket" => "Di upload melalui ". ($this->title=="title" ? $title:"module ".$this->title),
+                                              "created" => date("Y-m-d H:i")
+                                            ]);
           }
 
         return $image_copy;
