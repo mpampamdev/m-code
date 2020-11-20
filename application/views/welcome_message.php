@@ -81,7 +81,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<p>The corresponding controller for this page is found at:</p>
 		<code>application/controllers/Welcome.php</code>
 
-		<p>to access the backend module please click here <a href="<?=site_url()?>backend/login.html">Dashboard Apps</a>.</p>
+		<p>to access the backend module please click here <a href="<?=site_url()?>backend/login">Dashboard Apps</a>.</p>
 		<code>Username : mpampam@dev.com <br> password : 123456 </code>
 
 		<p>to access the mcrud module please click here <a href="<?=site_url()?>mcrud" target="_blank">MCRUD Apps</a>.</p>
