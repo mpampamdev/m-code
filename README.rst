@@ -31,13 +31,13 @@ pass : 123456
 
 to access the mcrud module please https://localhost/namaproject/mcrud
 
-Youtube:
+Youtube:_
 https://youtu.be/9g9Z56_PTYo
 
-facebook:
+facebook:_
 https://web.facebook.com/mpampam
 
-fanspage:
+fanspage:_
 https://web.facebook.com/programmerjalanan
 
 
@@ -48,4 +48,4 @@ Untuk membantu kami mengembangkan tools ini bisa dengan cara donasi buat ngopi  
 BNI 0330538612 / Muh.irfan ibnu
 
 
-`_#salam_keyboard!!!! :)<>`.
+`#salam_keyboard!!!! :) <https://github.com/mpampamdev/m-code>`.
