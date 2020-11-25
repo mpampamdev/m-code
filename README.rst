@@ -22,21 +22,21 @@ Features
 
 
 
-https://localhost/namaproject/backend/login
+<https://localhost/projectname>`_
 
-Before starting, please import the default database in the folder db/db.sql`_.
+Before starting, please import the default database in the folder db/db.sql.
 `akses login super super ++ admin
 `email : mpampam@dev.com
 `pass : 123456
 
-to access the mcrud module please <https://localhost/namaproject/mcrud>`.
+to access the mcrud module please <https://localhost/namaproject/mcrud>`_.
 
-Youtube:`.
-<https://youtu.be/9g9Z56`_PTYo>`.
-facebook:`
-<https://web.facebook.com/mpampam>`.
-fanspage:`.
-<https://web.facebook.com/programmerjalanan>`.
+`Youtube:
+<https://youtu.be/9g9Z56`_PTYo>`_.
+`facebook:
+`<https://web.facebook.com/mpampam>`_.
+`fanspage:
+`<https://web.facebook.com/programmerjalanan>`_.
 
 
 
