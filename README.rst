@@ -2,7 +2,9 @@
 m-code panel + m-crud generator codeigniter v3
 ###################
 
-Fitur
+**************************
+Features
+**************************
 
 M-CRUD Generator_.
 Module user_.
@@ -20,7 +22,7 @@ CI Version 3.1.11_.
 
 
 
-https://localhost/namaproject/backend/login
+https://localhost/namaproject/backend/login>
 
 Before starting, please import the default database in the folder db/db.sql_.
 akses login super super ++ admin_.
