@@ -7,17 +7,26 @@ Features
 **************************
 
 - M-CRUD Generator
+- Role-based access control (RBAC) user
 - Module user
 - Module group
 - Module permission
 - Module filemanager
-- Role-based access control (RBAC) user
 - Module menu management
 - setting system
+- setting maintenace
+- setting user log activity
+- update logo , logo mini, favicon
+- update route login and panel
+- encryption url
+- update timezone
+- update encryption key
+- update language english and indonesia
 - support ajax crud
 - support Datatable serverside
-- support text editor summernote
+- support text editor summernote inculde module file manager
 - Bulilt in PHP Version 7.4.10
+- tester web hosting php version 5.6 - 7.4
 - CI Version 3.1.11
 
 
