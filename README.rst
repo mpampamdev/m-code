@@ -6,18 +6,18 @@ m-code panel + m-crud generator codeigniter v3
 Features
 **************************
 
--`M-CRUD Generator
--`Module user
--`Module group
--`Module permission
--`Module filemanager
--`Role-based access control (RBAC) user
--`manage menu
--`setting system
--`support ajax crud
--`support Datatable serverside
--`support text editor summernote
--`Bulilt in PHP Version 7.4.10
+- `_M-CRUD Generator
+- `_Module user
+- `_Module group
+- `_Module permission
+- `_Module filemanager
+- `_Role-based access control (RBAC) user
+- `_manage menu
+- `_setting system
+- `_support ajax crud
+- `_support Datatable serverside
+- `_support text editor summernote
+- `_Bulilt in PHP Version 7.4.10
 -`CI Version 3.1.11
 
 
