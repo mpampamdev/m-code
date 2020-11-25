@@ -48,4 +48,4 @@ Untuk membantu kami mengembangkan tools ini bisa dengan cara donasi buat ngopi  
 BNI 0330538612 / Muh.irfan ibnu
 
 
-`#salam_keyboard!!!! :) `.
+`#salam_keyboard!!!! :) `__.
