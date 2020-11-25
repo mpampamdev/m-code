@@ -12,7 +12,7 @@ Features
 - Module permission
 - Module filemanager
 - Role-based access control (RBAC) user
-- manage menu
+- Module menu management
 - setting system
 - support ajax crud
 - support Datatable serverside
