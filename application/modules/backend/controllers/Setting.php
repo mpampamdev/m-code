@@ -59,9 +59,9 @@ class Setting extends Backend{
       }elseif($name == "max_upload"){
         $this->form_validation->set_rules("value","* ","trim|xss_clean|required|numeric");
       }elseif ($name == "route_admin") {
-        $this->form_validation->set_rules("value","* ","trim|xss_clean|alpha_numeric|callback__cek_route_admin");
+        $this->form_validation->set_rules("value","* ","trim|xss_clean|alpha_numeric|required|callback__cek_route_admin");
       }elseif($name == "route_login"){
-        $this->form_validation->set_rules("value","* ","trim|xss_clean|alpha_numeric|callback__cek_route_login");
+        $this->form_validation->set_rules("value","* ","trim|xss_clean|alpha_numeric|required|callback__cek_route_login");
       }elseif ($name == "logo" or $name == "logo_mini" or $name == "favicon") {
         $this->form_validation->set_rules("value","* ","trim|xss_clean|required");
       }else {
