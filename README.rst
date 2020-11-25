@@ -26,19 +26,16 @@ https://localhost/projectname
 
 Before starting, please import the default database in the folder db/db.sql.
 akses login super super ++ admin
-email : mpampam@dev.com
-pass : 123456
+- email : mpampam@dev.com
+- pass : 123456
 
 to access the mcrud module please https://localhost/namaproject/mcrud
 
-Youtube:
-https://youtu.be/9g9Z56_PTYo
+- Youtube: https://youtu.be/9g9Z56_PTYo
 
-facebook:
-https://web.facebook.com/mpampam
+- facebook: https://web.facebook.com/mpampam
 
-fanspage:
-https://web.facebook.com/programmerjalanan
+- fanspage: https://web.facebook.com/programmerjalanan
 
 
 
@@ -48,4 +45,4 @@ Untuk membantu kami mengembangkan tools ini bisa dengan cara donasi buat ngopi  
 BNI 0330538612 / Muh.irfan ibnu
 
 
-`#salam_keyboard!!!! :) `__.
+#salam_keyboard!!!! :)
