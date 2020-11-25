@@ -4,37 +4,37 @@ m-code panel + m-crud generator codeigniter v3
 
 Fitur
 
-M-CRUD Generator
-Module user
-Module group
-Module permission
-Module filemanager
-Role-based access control (RBAC) user
-manage menu
-setting system
-support ajax crud
-support Datatable serverside
-support text editor summernote
-Bulilt in PHP Version 7.4.10
-CI Version 3.1.11
+M-CRUD Generator_.
+Module user_.
+Module group_.
+Module permission_.
+Module filemanager_.
+Role-based access control (RBAC) user_.
+manage menu_.
+setting system_.
+support ajax crud_.
+support Datatable serverside_.
+support text editor summernote_.
+Bulilt in PHP Version 7.4.10_.
+CI Version 3.1.11_.
 
 
 
 https://localhost/namaproject/backend/login
 
-Before starting, please import the default database in the folder db/db.sql
-akses login super super ++ admin
-email : mpampam@dev.com
-pass : 123456
+Before starting, please import the default database in the folder db/db.sql_.
+akses login super super ++ admin_.
+email : mpampam@dev.com_.
+pass : 123456_.
 
-to access the mcrud module please https://localhost/namaproject/mcrud
+to access the mcrud module please <https://localhost/namaproject/mcrud>_.
 
-Youtube:
-https://youtu.be/9g9Z56_PTYo
-facebook:
-https://web.facebook.com/mpampam
-fanspage:
-https://web.facebook.com/programmerjalanan
+Youtube:_.
+<https://youtu.be/9g9Z56_PTYo>_.
+facebook:_.
+<https://web.facebook.com/mpampam>_.
+fanspage:_.
+<https://web.facebook.com/programmerjalanan>_.
 
 
 
