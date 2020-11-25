@@ -25,9 +25,13 @@ Features
 https://localhost/projectname
 
 Before starting, please import the default database in the folder db/db.sql.
+
+*******
 akses login super super ++ admin
+*******
 - email : mpampam@dev.com
 - pass : 123456
+
 
 to access the mcrud module please https://localhost/namaproject/mcrud
 
