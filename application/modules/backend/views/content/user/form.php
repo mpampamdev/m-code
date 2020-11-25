@@ -54,16 +54,16 @@
 
           <div class="form-group">
 					<label>Image</label>
-						<input type="file" name="img" class="file-upload-default" />
+						<input type="file" name="img" class="file-upload-default" data-id="photo"/>
 							<div class="input-group col-xs-12">
-								<input type="hidden" class="file-dir" name="file-dir" />
-								<input type="text" class="form-control form-control-sm file-upload-info file-name" readonly name="photo" value="<?=$file_name?>" />
+								<input type="hidden" class="file-dir" name="file-dir" data-id="photo"/>
+								<input type="text" class="form-control form-control-sm file-upload-info file-name" data-id="photo" readonly name="photo" value="<?=$file_name?>" />
 									<span class="input-group-append">
-										<button class="btn-remove-image btn btn-danger btn-sm" type="button" style="display:<?=$file_name!=''?'block':'none'?>;"><i class="ti-trash"></i></button>
-										<button class="file-upload-browse btn btn-primary btn-sm" type="button">Select File</button>
+										<button class="btn-remove-image btn btn-danger btn-sm" data-id="photo" type="button" style="display:<?=$file_name!=''?'block':'none'?>;"><i class="ti-trash"></i></button>
+										<button class="file-upload-browse btn btn-primary btn-sm" data-id="photo" type="button">Select File</button>
 									</span>
 							</div>
-						<div id="file_name"></div>
+						<div id="photo"></div>
 					</div>
 
           <?php if ($button=="update"): ?>
@@ -84,7 +84,7 @@
           <input type="hidden" name="submit" value="<?=$button?>">
 
           <div class="text-right">
-            <a href="<?=site_url("backend/".$this->uri->segment(2))?>" class="btn btn-sm btn-danger"><?=cclang("cancel")?></a>
+            <a href="<?=url($this->uri->segment(2))?>" class="btn btn-sm btn-danger"><?=cclang("cancel")?></a>
             <button type="submit" id="submit" name="submit"  class="btn btn-sm btn-primary"><?=cclang("save")?></button>
           </div>
         </form>

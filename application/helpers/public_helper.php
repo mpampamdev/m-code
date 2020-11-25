@@ -20,17 +20,6 @@ function setting($kd = null , $field = "value")
   }
 }
 
-function randomKey($length = 32)
-{
-  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  $charactersLength = strlen($characters);
-  $randomString = '';
-  for ($i = 0; $i < $length; $i++) {
-      $randomString .= $characters[rand(0, $charactersLength - 1)];
-  }
-  return $randomString;
-}
-
 
 function imgView($img = "", $class = "img-thumbnail", $style = "")
 {

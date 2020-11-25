@@ -1,4 +1,4 @@
-<?php
+{php_tag_open}
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
@@ -86,7 +86,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 
 
-$admin_route = "backend";
-$login_route = "login";
+$admin_route = "{route_admin}";
+$login_route = "{route_login}";
 defined('ADMIN_ROUTE')  OR define('ADMIN_ROUTE', "$admin_route");
 defined('LOGIN_ROUTE')  OR define('LOGIN_ROUTE', "$login_route");

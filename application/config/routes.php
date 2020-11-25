@@ -49,12 +49,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+$uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$uri_segments = explode('/', $uri_path);
+$urlroute = $uri_segments[2];
+// $urlroute = $uri_segments[1];
+
+if ($urlroute == ADMIN_ROUTE) {
+  $route['404_override'] = 'core/pagenotfound';
+}else {
+  $route['404_override'] = 'dsa';
+}
+
+
 $route['default_controller'] = 'welcome';
-$route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['mcrud'] = 'mcrud/Mcrud';
 
 $route['maintenance'] = 'backend/core/maintenance';
 
+$route['pagenotfound'] = 'backend/core/pagenotfound';
+
 $route['logout'] = 'backend/login/logout';
+$route[LOGIN_ROUTE] = 'backend/login';
+$route[LOGIN_ROUTE.'/(:any)'] = 'backend/login/$1';
+
+
+$route[ADMIN_ROUTE.'/(:any)'] = 'backend/$1';
+$route[ADMIN_ROUTE.'/(:any)/(:any)'] = 'backend/$1/$2';
+$route[ADMIN_ROUTE.'/(:any)/(:any)/(:any)'] = 'backend/$1/$2/$3';
+$route[ADMIN_ROUTE.'/(:any)/(:any)/(:any)/(:any)'] = 'backend/$1/$2/$3/$4';

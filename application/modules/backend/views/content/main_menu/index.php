@@ -19,8 +19,8 @@
             </div>
             <div class="card-body">
               <div class="mb-3">
-                <a href="<?=site_url('backend/main_menu/add')?>" class="btn btn-sm btn-success"><i class="fa fa-file"></i> <?=cclang("add_new")?></a>
-                <a href="<?=site_url("backend/main_menu")?>" class="btn btn-sm btn-info text-white"><i class="fa fa-refresh"></i> <?=cclang("reload")?></a>
+                <a href="<?=url('main_menu/add')?>" class="btn btn-sm btn-success"><i class="fa fa-file"></i> <?=cclang("add_new")?></a>
+                <a href="<?=url("main_menu")?>" class="btn btn-sm btn-info text-white"><i class="fa fa-refresh"></i> <?=cclang("reload")?></a>
               </div>
 
 
@@ -35,7 +35,7 @@
               <div class="custom-dd dd" id="main_menu">
                   <ol class="dd-list">
                     <?php foreach ($get_menu as $menu): ?>
-                      <?php  $url_menu = ($menu->type == "controller") ? site_url("backend/$menu->controller") : $menu->controller?>
+                      <?php  $url_menu = ($menu->type == "controller") ? url("$menu->controller") : $menu->controller?>
                       <?php
                         $get_sub_menu = $this->db->select("*")
                                                  ->from("main_menu")
@@ -50,13 +50,13 @@
                                 <div class="float-right dd-nodrag">
                                   <span class="text-success">[ # ]</span>
                                   <span class="text-primary">[ <?=$menu->is_active=="1" ? '<i class="mdi mdi-eye text-info"></i>':'<i class="mdi mdi-eye-off text-danger"></i>'?> ]</span>
-                                  <a href="<?=site_url("backend/main_menu/update/".enc_url($menu->id_menu))?>" class="badge badge-primary"><i class="fa fa-pencil"></i> <?=cclang("update")?></a>
-                                  <a id="delete" href="<?=site_url("backend/main_menu/delete/".enc_url($menu->id_menu))?>" class="badge badge-danger"><i class="fa fa-trash"></i> <?=cclang("delete")?></a>
+                                  <a href="<?=url("main_menu/update/".enc_url($menu->id_menu))?>" class="badge badge-primary"><i class="fa fa-pencil"></i> <?=cclang("update")?></a>
+                                  <a id="delete" href="<?=url("main_menu/delete/".enc_url($menu->id_menu))?>" class="badge badge-danger"><i class="fa fa-trash"></i> <?=cclang("delete")?></a>
                                 </div>
                             </div>
                             <ol class="dd-list">
                                 <?php foreach ($get_sub_menu->result() as $sub_menu): ?>
-                                  <?php  $url_sub_menu = ($sub_menu->type == "controller") ? site_url("backend/$sub_menu->controller") : $sub_menu->controller?>
+                                  <?php  $url_sub_menu = ($sub_menu->type == "controller") ? url("$sub_menu->controller") : $sub_menu->controller?>
 
                                   <li class="dd-item" data-id="<?=$sub_menu->id_menu?>">
                                       <div class="dd-handle">
@@ -64,8 +64,8 @@
                                           <div class="float-right dd-nodrag">
                                             <span class="text-success">[ <?=$url_sub_menu?> ]</span>
                                             <span class="text-primary">[ <?=$sub_menu->is_active=="1" ? '<i class="mdi mdi-eye text-info"></i>':'<i class="mdi mdi-eye-off text-danger"></i>'?> ]</span>
-                                            <a href="<?=site_url("backend/main_menu/update/".enc_url($sub_menu->id_menu))?>" class="badge badge-primary"><i class="fa fa-pencil"></i> <?=cclang("update")?></a>
-                                            <a id="delete" href="<?=site_url("backend/main_menu/delete/".enc_url($sub_menu->id_menu))?>" class="badge badge-danger"><i class="fa fa-trash"></i> <?=cclang("delete")?></a>
+                                            <a href="<?=url("main_menu/update/".enc_url($sub_menu->id_menu))?>" class="badge badge-primary"><i class="fa fa-pencil"></i> <?=cclang("update")?></a>
+                                            <a id="delete" href="<?=url("main_menu/delete/".enc_url($sub_menu->id_menu))?>" class="badge badge-danger"><i class="fa fa-trash"></i> <?=cclang("delete")?></a>
                                           </div>
                                       </div>
                                   </li>
@@ -79,8 +79,8 @@
                                   <div class="float-right dd-nodrag">
                                     <span class="text-success">[ <?=$url_menu?> ]</span>
                                     <span class="text-primary">[ <?=$menu->is_active=="1" ? '<i class="mdi mdi-eye text-info"></i>':'<i class="mdi mdi-eye-off text-danger"></i>'?> ]</span>
-                                    <a href="<?=site_url("backend/main_menu/update/".enc_url($menu->id_menu))?>" class="badge badge-primary"><i class="fa fa-pencil"></i> <?=cclang("update")?></a>
-                                    <a id="delete" href="<?=site_url("backend/main_menu/delete/".enc_url($menu->id_menu))?>" class="badge badge-danger"><i class="fa fa-trash"></i> <?=cclang("delete")?></a>
+                                    <a href="<?=url("main_menu/update/".enc_url($menu->id_menu))?>" class="badge badge-primary"><i class="fa fa-pencil"></i> <?=cclang("update")?></a>
+                                    <a id="delete" href="<?=url("main_menu/delete/".enc_url($menu->id_menu))?>" class="badge badge-danger"><i class="fa fa-trash"></i> <?=cclang("delete")?></a>
                                   </div>
                               </div>
                           </li>

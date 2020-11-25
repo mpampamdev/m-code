@@ -8,7 +8,7 @@
         <table class="table table-bordered table-striped">{content_detail}
         </table>
 
-        <a href="{open}site_url("backend/".$this->uri->segment(2)){close}" class="btn btn-sm btn-danger mt-3">{open}cclang("back"){close}</a>
+        <a href="{open}url($this->uri->segment(2)){close}" class="btn btn-sm btn-danger mt-3">{open}cclang("back"){close}</a>
       </div>
     </div>
   </div>

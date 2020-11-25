@@ -33,7 +33,7 @@
         </div>
       </div>
       <hr>
-      <a href="<?=site_url("backend/group")?>" class="btn btn-sm btn-danger"><?=cclang("cancel")?></a>
+      <a href="<?=url("group")?>" class="btn btn-sm btn-danger"><?=cclang("cancel")?></a>
       <button type="submit" name="submit" class="btn btn-sm btn-primary"><?=cclang("save")?></button>
       <a href="javascript:window.location.reload();" style="display:none" class="btn btn-sm btn-dark restore"> Restore</a>
     </form>
@@ -79,6 +79,36 @@ $(document).ready(function(){
               return false;
           }).show();
       });
+});
+
+
+$(document).on("click","#delete_permission",function(e){
+  e.preventDefault();
+  $('.modal-dialog').removeClass('modal-lg')
+                    .removeClass('modal-md')
+                    .addClass('modal-sm');
+  $("#modalTitle").text('<?=cclang("confirm")?>');
+  $('#modalContent').html(`<p class="mb-4"><?=cclang("delete_description")?></p>
+														<button type='button' class='btn btn-default btn-sm' data-dismiss='modal'><?=cclang("cancel")?></button>
+	                          <button type='button' class='btn btn-primary btn-sm' id='ya-hapus' data-id=`+$(this).attr('alt')+`  data-url=`+$(this).attr('href')+`><?=cclang("delete_action")?></button>
+														`);
+  $("#modalGue").modal('show');
+});
+
+
+$(document).on('click','#ya-hapus',function(e){
+  $(this).prop('disabled',true)
+          .text('Processing...');
+  $.ajax({
+          url:$(this).data('url'),
+          type:'POST',
+          cache:false,
+          dataType:'json',
+          success:function(json){
+            $('#modalGue').modal('hide');
+            location.reload();
+          }
+        });
 });
 
 </script>

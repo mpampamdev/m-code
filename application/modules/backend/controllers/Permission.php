@@ -45,6 +45,11 @@ class Permission extends Backend{
       // $no = $_POST['start'];
       foreach ($list as $rows) {
           $row = array();
+          $row[] = '<div class="form-check">
+                      <label class="form-check-label">
+                        <input type="checkbox" name="id" value="'.enc_url($rows->id).'" class="form-check-input select-delete">
+                      <i class="input-helper"></i></label>
+                    </div>';
           $row[] = $rows->id;
           $row[] = '<span class="text-primary">'.$rows->permission.'</span>';
           $row[] = '<span class="text-primary">'.ucwords(str_replace("_"," ",$rows->permission)).'</span>';
@@ -52,10 +57,10 @@ class Permission extends Backend{
 
           $row[] = '
                       <div class="btn-group" role="group" aria-label="Basic example">
-                          <a href="'.site_url("backend/permission/update/".enc_url($rows->id)).'" id="update" class="btn btn-warning" title="'.cclang("update").'">
+                          <a href="'.url("permission/update/".enc_url($rows->id)).'" id="update" class="btn btn-warning" title="'.cclang("update").'">
                             <i class="ti-pencil"></i>
                           </a>
-                          <a href="'.site_url("backend/permission/delete/".enc_url($rows->id)).'" id="delete" class="btn btn-danger" title="'.cclang("delete").'">
+                          <a href="'.url("permission/delete/".enc_url($rows->id)).'" id="delete" class="btn btn-danger" title="'.cclang("delete").'">
                             <i class="ti-trash"></i>
                           </a>
                         </div>
@@ -80,7 +85,7 @@ class Permission extends Backend{
   {
     $this->is_allowed('permission_add');
     $this->template->set_title(cclang("add")." Permission");
-    $data = array('action' => site_url("backend/permission/add_action"),
+    $data = array('action' => url("permission/add_action"),
                   'button' => "save",
                   'permission' => set_value("permission"),
                   'definition' => set_value("definition")
@@ -109,7 +114,7 @@ class Permission extends Backend{
 
         set_message("success",cclang("notif_save"));
 
-        $json['redirect'] = site_url("backend/permission");
+        $json['redirect'] = url("permission");
         $json['success'] = true;
       }else {
         foreach ($_POST as $key => $value) {
@@ -127,12 +132,14 @@ class Permission extends Backend{
     $this->is_allowed('permission_update');
     if ($row = $this->model->find(dec_url($id))) {
       $this->template->set_title(cclang("update")." Permission");
-      $data = array('action' => site_url("backend/permission/update_action/$id"),
+      $data = array('action' => url("permission/update_action/$id"),
                     'button' => "update",
                     'permission' => set_value("permission", $row->permission),
                     'definition' => set_value("definition", $row->definition)
                     );
       $this->template->view("content/permission/form",$data);
+    }else {
+      $this->error404();
     }
   }
 
@@ -157,7 +164,7 @@ class Permission extends Backend{
 
         set_message("success",cclang("notif_update"));
 
-        $json['redirect'] = site_url("backend/permission");
+        $json['redirect'] = url("permission");
         $json['success'] = true;
       }else {
         foreach ($_POST as $key => $value) {
@@ -172,7 +179,7 @@ class Permission extends Backend{
   function delete($id = null)
   {
     if ($this->input->is_ajax_request()) {
-
+        $json = array('type' =>"error" , "msg" => "error delete");
         if (!$this->is_allowed('permission_delete',false)) {
           return $this->response([
             'type_msg' => "error",
@@ -180,14 +187,30 @@ class Permission extends Backend{
   				]);
         }
 
-        $remove = $this->model->remove(dec_url($id));
-        if ($remove) {
+        if ($id!=null) {
+          $remove = $this->model->remove(dec_url($id));
+          if ($remove) {
+            $json['type_msg'] = "success";
+            $json['msg'] = cclang("notif_delete");
+          }else {
+            $json['type_msg'] = "error";
+            $json['msg'] = cclang("notif_delete_failed");
+          }
+        }
+
+        if ($this->input->post('id')) {
+          $id = $this->input->post('id');
+          $exp = explode(",", $id);
+          for ($i=0; $i <count($exp) ; $i++) {
+            $remove = $this->model->remove(dec_url($exp[$i]));
+          }
+
           $json['type_msg'] = "success";
           $json['msg'] = cclang("notif_delete");
-        }else {
-          $json['type_msg'] = "error";
-          $json['msg'] = cclang("notif_delete_failed");
+
         }
+
+
         return $this->response($json);
     }
   }

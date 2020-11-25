@@ -11,9 +11,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Group extends Backend{
 
+  private $title = "Group";
+
   public function __construct()
   {
-    parent::__construct();
+    $config = array(
+      'title' => $this->title,
+     );
+    parent::__construct($config);
     $this->load->model("Group_model","model");
   }
 
@@ -50,13 +55,13 @@ class Group extends Backend{
 
           $row[] = '
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a href="'.site_url("backend/group/access_control/".enc_url($rows->id)).'" id="detail" class="btn btn-primary" title="'.cclang("access_control").'">
+                        <a href="'.url("group/access_control/".enc_url($rows->id)).'" id="detail" class="btn btn-primary" title="'.cclang("access_control").'">
                           <i class="mdi mdi-checkbox-multiple-marked"></i> '.cclang("access_control").'
                         </a>
-                        <a href="'.site_url("backend/group/update/".enc_url($rows->id)).'" id="update" class="btn btn-warning" title="'.cclang("update").'">
+                        <a href="'.url("group/update/".enc_url($rows->id)).'" id="update" class="btn btn-warning" title="'.cclang("update").'">
                           <i class="ti-pencil"></i>
                         </a>
-                        <a href="'.site_url("backend/group/delete/".enc_url($rows->id)).'" id="delete" class="btn btn-danger" title="'.cclang("delete").'">
+                        <a href="'.url("group/delete/".enc_url($rows->id)).'" id="delete" class="btn btn-danger" title="'.cclang("delete").'">
                           <i class="ti-trash"></i>
                         </a>
                       </div>
@@ -81,7 +86,7 @@ class Group extends Backend{
   {
     $this->is_allowed('groups_add');
     $this->template->set_title("Add New Group");
-    $data = array('action' => site_url("backend/Group/add_action"),
+    $data = array('action' => url("Group/add_action"),
                   'button' => "save",
                   'group' => set_value("group"),
                   'definition' => set_value("definition")
@@ -110,7 +115,7 @@ class Group extends Backend{
 
         set_message("success",cclang("notif_save"));
 
-        $json['redirect'] = site_url("backend/group");
+        $json['redirect'] = url("group");
         $json['success'] = true;
       }else {
         foreach ($_POST as $key => $value) {
@@ -128,12 +133,14 @@ class Group extends Backend{
     $this->is_allowed('groups_update');
     if ($row = $this->model->find(dec_url($id))) {
       $this->template->set_title("Update Group");
-      $data = array('action' => site_url("backend/Group/update_action/".enc_url($id)),
+      $data = array('action' => url("group/update_action/$id"),
                     'button' => "update",
                     'group' => set_value("group", $row->group),
                     'definition' => set_value("definition", $row->definition)
                     );
       $this->template->view("content/group/form",$data);
+    }else {
+      $this->error404();
     }
   }
 
@@ -155,9 +162,14 @@ class Group extends Backend{
                       ];
 
         $save = $this->model->change(dec_url($id), $save_data);
-        set_message("success",cclang("notif_update"));
 
-        $json['redirect'] = site_url("backend/group");
+        if ($save) {
+          set_message("success",cclang("notif_update"));
+        }else {
+          set_message("error",cclang("notif_update_failed"));
+        }
+
+        $json['redirect'] = url("group");
         $json['success'] = true;
       }else {
         foreach ($_POST as $key => $value) {
@@ -199,12 +211,14 @@ class Group extends Backend{
     $this->is_allowed('groups_access');
     if ($row = $this->model->find(dec_url($id))) {
       $this->template->set_title("Group ".cclang("access_control"));
-      $data = array('action' => site_url("backend/Group/save_acces_control/$id"),
+      $data = array('action' => url("Group/save_acces_control/$id"),
                     'group' => set_value("group", $row->group),
                     'definition' => set_value("definition", $row->definition),
                     'list' => $this->model->list_control_access(dec_url($id))
                     );
       $this->template->view("content/group/access",$data);
+    }else {
+      $this->error404();
     }
   }
 
@@ -234,7 +248,31 @@ class Group extends Backend{
             set_message("error",cclang("notif_save_failed"));
         }
     }
-    redirect(site_url("backend/group"));
+    redirect(url("group"));
+  }
+
+
+  function deletepermission($id = null)
+  {
+    if ($this->input->is_ajax_request()) {
+
+        if (!is_allowed('permission_delete')) {
+          return $this->response([
+            'type_msg' => "error",
+            'msg' => "Do not have permission to access"
+  				]);
+        }
+
+        $this->db->where("id", dec_url($id));
+        $remove = $this->db->delete("auth_permission");
+        if ($remove) {
+          set_message("success",cclang("notif_delete"));
+        }else {
+          set_message("error",cclang("notif_delete_failed"));
+        }
+        $json['success'] = true;
+        return $this->response($json);
+    }
   }
 
 }

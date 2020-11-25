@@ -20,15 +20,40 @@ class Dashboard extends Backend{
   function index()
   {
     $this->template->set_title("Dashboard");
-    $this->template->view("Content/dashboard/index");
+    $this->template->view("content/dashboard/index");
   }
 
   function test()
   {
-    // show_error("Access Permission", 403,'403::Access Not Permission');
-    // echo CI_VERSION;
-    echo randomKey();
+    $this->load->library(array("Encryption","My_encrypt"));
+    $msg = 15;
+
+    $encrypted_string = enc_url($msg);
+    echo $encrypted_string;
+    echo "<br>";
+    $decode_string = dec_url($encrypted_string);
+    echo $decode_string;
+    echo "<br>";
+
+
+    echo ADMIN_ROUTE;
+
+
+    // echo '<a href="'.get_url().'">dasads</a>';
   }
+
+
+  function folderSize ($dir = null)
+{
+  $dir = "./_temp/uploads/img/";
+    $size = 0;
+
+    foreach (glob(rtrim($dir, '/').'/*', GLOB_NOSORT) as $each) {
+        $size += is_file($each) ? filesize($each) : folderSize($each);
+    }
+
+    echo $size. "Kb";
+}
 
 
 }

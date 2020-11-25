@@ -22,7 +22,7 @@
             <input class="form-control" type="hidden" name="last_permission" id="last_permission" value="<?=$permission?>">
           <?php endif; ?>
 
-          <a href="<?=site_url("backend/".$this->uri->segment(2))?>" class="btn btn-sm btn-danger"><?=cclang("cancel")?></a>
+          <a href="<?=url($this->uri->segment(2))?>" class="btn btn-sm btn-danger"><?=cclang("cancel")?></a>
           <button type="submit" id="submit" name="submit" class="btn btn-sm btn-primary"><?=cclang("save")?></button>
 
         </form>

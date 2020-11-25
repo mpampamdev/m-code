@@ -25,7 +25,7 @@ $lang['access_control'] = "Kontrol Akses";
 $lang['reload'] = "Muat Ulang";
 $lang['setting'] = "Pengaturan";
 $lang['select_all'] = "Pilih Semua";
-
+$lang['delete_selected'] = "Hapus yang dipilih";
 
 
 //setting
@@ -43,6 +43,7 @@ $lang['time_zone'] = "Zona waktu";
 $lang['notif_save'] = "Data Berhasil Di Simpan";
 $lang['notif_save_failed'] = "Data Gagal Di Simpan";
 $lang['notif_update'] = "Data Berhasil Di Ubah";
+$lang['notif_update_failed'] = "Data Gagal Di Ubah";
 $lang['notif_delete'] = "Data Berhasil Di Hapus";
 $lang['notif_delete_failed'] = "Data Gagal Di Hapus";
 $lang['already_available'] = "Sudah Tersedia"; //already available

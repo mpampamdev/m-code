@@ -57,9 +57,24 @@
 
         <?php if ($primary_key!=1): ?>
           <div class="form-group">
+            <label for=""><?=cclang("type_form")?></label>
+            <select class="form-control form-control-smm" id="type_form[<?=$fields->name?>]" name="type_form[<?=$fields->name?>]">
+              <option value="text">text</option>
+              <option value="textarea">textarea</option>
+              <option value="imageupload">image-upload</option>
+              <option value="text-editor">text-editor (summernote)</option>
+              <option value="date">date</option>
+              <option value="time">time</option>
+              <option value="datetime-local">datetime</option>
+            </select>
+          </div>
+      <?php endif; ?>
+
+        <?php if ($primary_key!=1): ?>
+          <div class="form-group">
             <label for=""><?=cclang("rules_form_validation")?></label>
              <select class="js-multiple-select form-control" style="width:100%!important" name="rules[<?=$fields->name?>][]" id="rules[<?=$fields->name?>][]" multiple="multiple" >
-               <option selected value="required">required</option>
+               <option value="required">required</option>
                <option value="numeric">numeric</option>
                <option value="alpha">alpha</option>
                <option value="alpha_numeric">alpha_numeric</option>
@@ -73,20 +88,6 @@
            </div>
         <?php endif; ?>
 
-        <?php if ($primary_key!=1): ?>
-          <div class="form-group">
-            <label for=""><?=cclang("type_form")?></label>
-            <select class="form-control form-control-smm" id="type_form[<?=$fields->name?>]" name="type_form[<?=$fields->name?>]">
-              <option value="text">text</option>
-              <option value="textarea">textarea</option>
-              <option value="imageupload">image-upload</option>
-              <option value="text-editor">text-editor (summernote)</option>
-              <option value="date">date</option>
-              <option value="time">time</option>
-              <option value="datetime-local">datetime</option>
-            </select>
-          </div>
-      <?php endif; ?>
 
       </div>
     </div>

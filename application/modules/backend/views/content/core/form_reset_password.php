@@ -48,14 +48,9 @@ $.ajax({
       success:function(json){
         if (json.success==true) {
           $("#modalGue").modal("hide");
-            $.toast({
-              text: json.alert,
-              showHideTransition: 'slide',
-              icon: 'success',
-              loaderBg: '#f96868',
-              position: 'bottom-right',
-							hideAfter: 3000
-            });
+          swal(json.alert, {
+            icon:'success'
+          })
         }else {
           $("#submit").prop('disabled',false)
                       .html('Reset Password');

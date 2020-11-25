@@ -84,7 +84,7 @@ function add()
 {
   $this->is_allowed('menu_add');
   $this->template->set_title(cclang("add")." menu");
-  $data = array('action' => site_url("backend/main_menu/add_action"),
+  $data = array('action' => url("main_menu/add_action"),
                 'button' => "save",
                 'id_menu' => set_value("id_menu"),
                 'menu' => set_value("menu"),
@@ -125,7 +125,7 @@ function add_action()
           $this->model->get_insert("main_menu",$insert);
 
           set_message("success",cclang("notif_save"));
-          $json['redirect'] = site_url("backend/main_menu");
+          $json['redirect'] = url("main_menu");
           $json['success'] =  true;
         }else {
           foreach ($_POST as $key => $value)
@@ -144,7 +144,7 @@ function update($id)
   $this->is_allowed('menu_update');
   if ($row =  $this->model->get_where("main_menu",["id_menu"=>dec_url($id)])) {
     $this->template->set_title(cclang("update")." menu");
-    $data = array('action' => site_url("backend/main_menu/update_action/$id"),
+    $data = array('action' => url("main_menu/update_action/$id"),
                   'button' => "update",
                   'id_menu' => set_value("id_menu",dec_url($id)),
                   'menu' => set_value("menu",$row->menu),
@@ -156,6 +156,8 @@ function update($id)
                   'is_active' => set_value("is_active",$row->is_active)
                   );
     $this->template->view("content/main_menu/form",$data);
+  }else {
+    $this->error404();
   }
 }
 
@@ -195,7 +197,7 @@ function update_action($id)
 
           $this->model->get_update("main_menu",$update, ["id_menu"=>dec_url($id)]);
           set_message("success",cclang("notif_update"));
-          $json['redirect'] = site_url("backend/main_menu");
+          $json['redirect'] = url("main_menu");
           $json['success'] =  true;
         }else {
           foreach ($_POST as $key => $value)

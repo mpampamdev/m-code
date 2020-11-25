@@ -111,10 +111,11 @@ public function __construct()
 
             $str.='<li>
                       <div class="form-check form-check-primary form-check-no-margin">
-                        <label class="form-check-label text-danger">
+                        <label class="form-check-label text-primary">
                           <input type="checkbox" class="form-check-input '.$group_name.'" name="id[]" value="'.$perms->id.'" '.$checked.'>
                           '.ucwords(str_replace("_"," ",$perms->permission)).'
                           <i class="input-helper"></i>
+                          <a href="'.url('group/deletepermission/'.$perms->id).'" id="delete_permission" class="float-right"><i class="fa fa-trash text-danger"></i></a>
                         </label>
                       </div>
                     </li>';
