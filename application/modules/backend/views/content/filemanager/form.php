@@ -29,7 +29,7 @@
           <input type="hidden" name="params" value="<?=strtolower($params)?>">
 
         <div class="mt-4">
-          <a href="<?=site_url("backend/".$this->uri->segment(2))?>" class="btn btn-sm btn-danger"><?=cclang("cancel")?></a>
+          <a href="<?=url($this->uri->segment(2))?>" class="btn btn-sm btn-danger"><?=cclang("cancel")?></a>
           <button type="submit" id="submit" name="submit" class="btn btn-sm btn-primary"><?=cclang("save")?></button>
         </div>
 

@@ -110,7 +110,7 @@
                 var data = new FormData();
                 data.append("file", image);
                 $.ajax({
-                    url: BASE_URL+"backend/core/imageUploadEditor",
+                    url: "<?=url($this->uri->segment(2)."/imageUploadEditor")?>",
                     cache: false,
                     contentType: false,
                     processData: false,

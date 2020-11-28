@@ -80,7 +80,7 @@
             <input type="hidden" name="submit" value="<?=$button?>">
 
             <div class="col-sm-12 mt-3">
-              <a href="<?=site_url("backend/".$this->uri->segment(2))?>" class="btn btn-sm btn-danger"><?=cclang("cancel")?></a>
+              <a href="<?=url($this->uri->segment(2))?>" class="btn btn-sm btn-danger"><?=cclang("cancel")?></a>
               <button type="submit" id="submit" name="submit" class="btn btn-sm btn-primary"><?=cclang("save")?></button>
             </div>
           </div>

@@ -10,7 +10,7 @@
           <input type="hidden" name="params" value="{open}strtolower($params){close}">
 
         <div class="mt-4">
-          <a href="{open}site_url("backend/".$this->uri->segment(2)){close}" class="btn btn-sm btn-danger">{open}cclang("cancel"){close}</a>
+          <a href="{open}url($this->uri->segment(2)){close}" class="btn btn-sm btn-danger">{open}cclang("cancel"){close}</a>
           <button type="submit" id="submit" name="submit" class="btn btn-sm btn-primary">{open}cclang("save"){close}</button>
         </div>
 

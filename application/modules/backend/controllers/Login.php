@@ -5,7 +5,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /* fb : https://facebook.com/mpampam*/
 /* fanspage : https://web.facebook.com/programmerjalanan*/
 /* web : www.mpampam.com*/
-/* Generate By M-CRUD Generator 10/11/2020 14:51*/
 /* Please DO NOT modify this information */
 
 
@@ -15,7 +14,7 @@ class Login extends CI_Controller{
   {
     parent::__construct();
     $this->load->library("encryption");
-    $this->load->helper(array("backend/app","public"));
+    $this->load->helper(array("backend/app","public","sct"));
   }
 
   function _tokens()
@@ -29,10 +28,10 @@ class Login extends CI_Controller{
   function index()
   {
     if ($this->session->userdata("login_status")) {
-        redirect(site_url("backend/dashboard"),"refresh");
+        redirect(url("dashboard"),"refresh");
     }else {
        $this->_tokens();
-       $this->load->view("login");
+       $this->load->view("login-clasic");
     }
   }
 
@@ -66,7 +65,7 @@ class Login extends CI_Controller{
                   $this->db->update("auth_user", $data);
 
                   $json['valid'] = true;
-                  $json["url"] = site_url("backend/dashboard");
+                  $json["url"] = site_url(ADMIN_ROUTE."/dashboard");
                 }else {
                   $json['alert'] = "Email or password invalid";
                 }
@@ -92,9 +91,9 @@ class Login extends CI_Controller{
 
   function logout()
   {
-    $this->load->library(array("user_agent"));
+    // $this->load->library(array("user_agent"));
     $this->session->sess_destroy();
-    redirect(site_url("backend/login"),"refresh");
+    redirect(LOGIN_ROUTE,"refresh");
   }
 
 

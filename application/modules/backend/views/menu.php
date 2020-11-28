@@ -4,7 +4,7 @@
       $getMenu = $this->Core_model->get_main_menu();
 ?>
 <?php foreach ($getMenu->result() as $menu): ?>
-  <?php  $url_menu = ($menu->type == "controller") ? site_url("backend/$menu->controller") : $menu->controller?>
+  <?php  $url_menu = ($menu->type == "controller") ? site_url(ADMIN_ROUTE."/$menu->controller") : $menu->controller?>
           <?php $getSubMenu = $this->Core_model->get_main_menu($menu->id_menu); ?>
           <?php if ($getSubMenu->num_rows() > 0): ?>
             <?php if (is_allowed("sidebar_view_".str_replace(" ","_",$menu->menu))): ?>
@@ -17,7 +17,7 @@
                 <div class="collapse" id="menus<?=$menu->id_menu?>">
                    <ul class="nav flex-column sub-menu">
                 <?php foreach ($getSubMenu->result() as $sub_menu): ?>
-                  <?php  $url_sub_menu = ($sub_menu->type == "controller") ? site_url("backend/$sub_menu->controller") : $sub_menu->controller?>
+                  <?php  $url_sub_menu = ($sub_menu->type == "controller") ? site_url(ADMIN_ROUTE."/$sub_menu->controller") : $sub_menu->controller?>
                   <?php if (is_allowed("sidebar_view_".str_replace(" ","_",$sub_menu->menu))): ?>
                     <li class="nav-item">
                       <a class="nav-link <?=$sub_menu->controller == $uri ? 'active':''?>" target="<?=$sub_menu->target?>" href="<?=$url_sub_menu?>">

@@ -37,6 +37,11 @@ class Setting extends Backend{
                       'max_upload' => $this->config->item("max_upload")
                       );
 
+      $constants = array('php_tag_open' 	=> '<?php',
+                          'route_admin' => ADMIN_ROUTE,
+                          'route_login' => LOGIN_ROUTE
+                          );
+
       $pk = $this->input->post("pk", true);
       $name = $this->input->post("name", true);
       $value = htmlspecialchars($this->input->post("value", true));
@@ -53,6 +58,12 @@ class Setting extends Backend{
         $this->form_validation->set_rules("value","* ","trim|xss_clean|required|valid_email");
       }elseif($name == "max_upload"){
         $this->form_validation->set_rules("value","* ","trim|xss_clean|required|numeric");
+      }elseif ($name == "route_admin") {
+        $this->form_validation->set_rules("value","* ","trim|xss_clean|alpha_numeric|required|callback__cek_route_admin");
+      }elseif($name == "route_login"){
+        $this->form_validation->set_rules("value","* ","trim|xss_clean|alpha_numeric|required|callback__cek_route_login");
+      }elseif ($name == "logo" or $name == "logo_mini" or $name == "favicon") {
+        $this->form_validation->set_rules("value","* ","trim|xss_clean|required");
       }else {
         $this->form_validation->set_rules("value","* ","trim|xss_clean|htmlspecialchars|required");
       }
@@ -66,12 +77,18 @@ class Setting extends Backend{
           $config[$name] = $value;
           $config_template = $this->parser->parse('content/core/config_template.txt', $config, TRUE);
 			    write_file(FCPATH . '/application/config/config.php', $config_template);
+        }elseif ($pk == "998") {
+          $this->load->library("parser");
+          $this->load->helper("file");
+          $constants[$name] = strtolower($value);
+          $constants_template = $this->parser->parse('content/core/constants_template.txt', $constants, TRUE);
+			    write_file(FCPATH . '/application/config/constants.php', $constants_template);
         }else {
           $update = array("value" => $value);
           $this->model->get_update("setting", $update ,["id_setting"=>$pk]);
         }
 
-        $json['value'] = $value;
+        $json['value'] = strtolower($value);
         $json['success'] = true;
       }else {
         $json['msg'] = form_error("value");
@@ -82,58 +99,8 @@ class Setting extends Backend{
   }
 
 
-  function file_upload()
-  {
-    if ($this->input->is_ajax_request()) {
-      if (!is_allowed("config_update_logo")) {
-        return $this->response([
-          'success' => false,
-          'alert' => "do not have permission to update"
-        ]);
-      }
 
-        $config = [
-    			'upload_path' 		=> './_temp/uploads/logo/',
-    			'allowed_types' 	=> 'png|jpeg|jpg',
-    			'max_size'  		=> '1000',
-    		];
-
-        $this->load->library('upload', $config);
-        if ($this->upload->do_upload('qqfile')){
-          $upload_data = $this->upload->data();
-
-          if (file_exists("./_temp/uploads/logo/".setting("logo"))) {
-            unlink("./_temp/uploads/logo/".setting("logo"));
-          }
-
-          $update = array('value'=>$upload_data['file_name']);
-
-          $this->model->get_update("setting",$update,["options"=>"logo"]);
-
-          $json['uploadName'] = $upload_data['file_name'];
-          $json['alert'] = "Upload successfully";
-          $json['success'] = true;
-        }else {
-          $json['alert'] = $this->upload->display_errors();
-          $json['success'] = false;
-        }
-      }
-    return $this->response($json);
-  }
-
-  function get_avatar()
-  {
-    $json[] = array('success' 		  => true,
-          					'thumbnailUrl'  => base_url()."_temp/uploads/logo/".setting("logo"),
-                    'id' 					  => 0,
-          					'name' 					=> setting("logo"),
-          					'uuid' 					=> setting("logo","id_setting"),
-                  );
-    return $this->response($json);
-  }
-
-
-  function time_zone()
+function time_zone()
 {
 	$timezones = [];
 	foreach(timezone_abbreviations_list() as $abbr => $timezone){
@@ -154,6 +121,25 @@ class Setting extends Backend{
 	return json_encode($json);
 }
 
+function _cek_route_admin($str)
+{
+    if ($str == LOGIN_ROUTE) {
+      $this->form_validation->set_message('_cek_route_admin', $str.' characters may not be used.');
+      return FALSE;
+    }else {
+      return true;
+    }
+}
 
+function _cek_route_login($str)
+{
+  if ($str == "backend" OR $str == ADMIN_ROUTE) {
+      $this->form_validation->set_message('_cek_route_login', $str.' characters may not be used.');
+      return FALSE;
+    }else {
+      return true;
+    }
+
+}
 
 }

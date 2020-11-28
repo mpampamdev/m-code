@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title><?=ucwords($title_module)?></title>
-  <link rel="shortcut icon" href="<?=base_url()?>_temp/backend/images/favicon.png" />
+  <link rel="shortcut icon" href="<?=base_url()?>_temp/uploads/img/<?=setting("favicon")?>" />
   <!--Animate CSS -->
   <link href="<?=base_url()?>_temp/backend/vendors/animate/animate.min.css" rel="stylesheet" type="text/css">
   <link href="<?=base_url()?>_temp/backend/css/custom.css" rel="stylesheet" type="text/css">
@@ -54,8 +54,8 @@
   <div class="container-scroller">
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="<?=site_url("backend/dashboard")?>"><img src="<?=base_url()?>_temp/uploads/logo/<?=setting("logo")?>" class="mr-2" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href="<?=site_url("backend/dashboard")?>"><img src="<?=base_url()?>_temp/backend/logo-mini.png" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-5" href="<?=url("dashboard")?>"><img src="<?=base_url()?>_temp/uploads/img/<?=setting("logo")?>" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="<?=url("dashboard")?>"><img src="<?=base_url()?>_temp/uploads/img/<?=setting("logo_mini")?>" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -72,7 +72,7 @@
 
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" id="reset-pwd" href="<?=site_url("backend/core/reset_password")?>">
+              <a class="dropdown-item" id="reset-pwd" href="<?=url("core/reset_password")?>">
                 <i class="mdi mdi-key-change text-primary"></i>
                 Change Password
               </a>

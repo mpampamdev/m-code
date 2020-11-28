@@ -47,21 +47,28 @@ class Filemanager extends Backend{
       $data = array();
       foreach ($rows as $get) {
           $row = array();
+          $row[] = '<div class="form-check">
+                      <label class="form-check-label">
+                        <input type="checkbox" name="id" value="'.enc_url($get->id).'" class="form-check-input">
+                      <i class="input-helper"></i></label>
+                    </div>';
           $row[] = imgView($get->file_name);
 					$row[] = "<span class='text-primary'>$get->file_name</span>";
           $row[] = $get->ket;
           $row[] = date('d/m/Y H:i', strtotime($get->created));
           $row[] = '
                       <div class="btn-group" role="group" aria-label="Basic example">
-                          <button type="button" data-text="'.base_url("_temp/uploads/img/$get->file_name").'" class="btn btn-warning" id="copyboard"  title="copy Url">
+                          <button type="button" data-text="'.base_url("_temp/uploads/img/$get->file_name").'" class="btn btn-warning" id="copyboard"  title="copy path img">
                             <i class="ti-files"></i>
                           </button>
-                          <a href="'.site_url("backend/filemanager/delete/".enc_url($get->id)).'" id="delete" class="btn btn-danger" title="'.cclang("delete").'">
-                            <i class="ti-trash"></i>
-                          </a>
                         </div>
-                   ';
 
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" data-text="'.$get->file_name.'" class="btn btn-warning" id="copyboard"  title="copy name img">
+                              <i class="mdi mdi-checkbox-multiple-blank-outline"></i>
+                            </button>
+                          </div>
+                   ';
           $data[] = $row;
       }
 
@@ -86,9 +93,9 @@ class Filemanager extends Backend{
 
   function add()
   {
-    // $this->is_allowed('filemanager_add');
+    $this->is_allowed('filemanager_add');
     $this->template->set_title(cclang("add")." $this->title");
-    $data = array('action' => site_url("backend/filemanager/add_action"),
+    $data = array('action' => url("filemanager/add_action"),
                   'params' => "add",
 									'file_name' => set_value('file_name')
                   );
@@ -114,7 +121,7 @@ class Filemanager extends Backend{
         $this->model->insert($save_data);
         set_message("success",cclang("notif_save"));
 
-        $json['redirect'] = site_url("backend/filemanager");
+        $json['redirect'] = url("filemanager");
         $json['success'] = true;
       }else {
         foreach ($_POST as $key => $value) {
@@ -130,26 +137,42 @@ class Filemanager extends Backend{
   function delete($id = null)
   {
     if ($this->input->is_ajax_request()) {
-
-        if (!$this->is_allowed('filemanager_delete',false)) {
+        $json = array('type' =>"error" , "msg" => "error delete");
+        if (!is_allowed('filemanager_delete')) {
           return $this->response([
             'type_msg' => "error",
             'msg' => "Do not have permission to access"
   				]);
         }
 
-        $getimg = $this->model->find(dec_url($id));
-        $this->imageRemove($getimg->file_name, false);
 
-        $remove = $this->model->remove(dec_url($id));
+        if ($id!=null) {
+          $getimg = $this->model->find(dec_url($id));
+          $this->imageRemove($getimg->file_name, false);
+          $remove = $this->model->remove(dec_url($id));
+          if ($remove) {
+            $json['type_msg'] = "success";
+            $json['msg'] = cclang("notif_delete");
+          }else {
+            $json['type_msg'] = "error";
+            $json['msg'] = cclang("notif_delete_failed");
+          }
+        }
 
-        if ($remove) {
+        if ($this->input->post('id')) {
+          $id = $this->input->post('id');
+          $exp = explode(",", $id);
+          for ($i=0; $i <count($exp) ; $i++) {
+            $getimg = $this->model->find(dec_url($exp[$i]));
+            $this->imageRemove($getimg->file_name, false);
+            $this->model->remove(dec_url($exp[$i]));
+          }
+
           $json['type_msg'] = "success";
           $json['msg'] = cclang("notif_delete");
-        }else {
-          $json['type_msg'] = "error";
-          $json['msg'] = cclang("notif_delete_failed");
+
         }
+
         return $this->response($json);
     }
   }

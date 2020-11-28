@@ -6,7 +6,7 @@
       </div>
       <div class="card-body">
         <div class="mb-2">
-          <a href="<?=site_url("backend/user/add")?>" class="btn btn-sm btn-success btn-icon-text"><i class="fa fa-file btn-icon-prepend"></i><?=cclang("add_new",ucfirst($title_module))?></a>
+          <a href="<?=url("user/add")?>" class="btn btn-sm btn-success btn-icon-text"><i class="fa fa-file btn-icon-prepend"></i><?=cclang("add_new",ucfirst($title_module))?></a>
         </div>
         <table class="table table-bordered table-striped" id="table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
           <thead>
@@ -16,6 +16,7 @@
               <th>Email</th>
               <th>Group</th>
               <th>Is Active</th>
+              <th>Join</th>
               <th>Last login</th>
               <th>#</th>
             </tr>
@@ -64,7 +65,6 @@ var table;
             "orderable": false
         },
         {
-            "className": "text-center",
             "orderable": false,
             "targets": 2
         },
@@ -87,6 +87,11 @@ var table;
             "className": "text-center",
             "orderable": false,
             "targets": 6
+        },
+        {
+            "className": "text-center",
+            "orderable": false,
+            "targets": 7
         }
       ],
     });

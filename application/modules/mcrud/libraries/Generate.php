@@ -156,7 +156,7 @@ class Generate
         }elseif($params == "filter") {
           foreach ($show_in_table as $key => $value) {
             $str .= "\n\t\t\tif(\$this->input->post('".$key."')){";
-            $str .=  "\n\t\t\t\t\$this->db->where('".$key."', \$this->input->post('".$key."'));";
+            $str .=  "\n\t\t\t\t\$this->db->like('".$key."', \$this->input->post('".$key."'));";
             $str .=  "\n\t\t\t}";
           }
         }

@@ -25,6 +25,7 @@ $lang['access_control'] = "Access Control";
 $lang['reload'] = "Reload";
 $lang['setting'] = "Setting";
 $lang['select_all'] = "Select All";
+$lang['delete_selected'] = "Delete selected";
 
 
 //setting
@@ -42,8 +43,9 @@ $lang['time_zone'] = "Time Zone";
 $lang['notif_save'] = "Save Data Successfully";
 $lang['notif_save_failed'] = "Save Data Invalid";
 $lang['notif_update'] = "Update Data Successfully";
+$lang['notif_update_failed'] = "Update Data Failed";
 $lang['notif_delete'] = "Delete Data Successfully";
-$lang['notif_delete_failed'] = "Delete Data Invalid";
+$lang['notif_delete_failed'] = "Delete Data Failed";
 $lang['already_available'] = "Already available"; //already available
 // $lang[''] = "";
 

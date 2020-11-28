@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['time_zone'] = "Asia/Makassar";
 date_default_timezone_set($config['time_zone']);
 //max upload Kb
-$config['max_upload'] = 1000;
+$config['max_upload'] = 10000;
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -69,7 +69,7 @@ $config['uri_protocol']	= 'REQUEST_URI';
 |
 | https://codeigniter.com/user_guide/general/urls.html
 */
-$config['url_suffix'] = '.asp';
+$config['url_suffix'] = '.html';
 
 /*
 |--------------------------------------------------------------------------

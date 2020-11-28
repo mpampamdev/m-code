@@ -419,3 +419,6 @@ border-color: #166ac1!important;
 .modal-footer .btn, p{
   margin:5px!important;
 }
+.note-editor.note-frame{
+  border: 1px solid #c9ccd7!important;
+}

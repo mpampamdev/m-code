@@ -48,22 +48,21 @@ class User extends Backend{
           $row[] = $rows->email;
           $row[] = $rows->group == "" ? '<i>Null</i>':ucfirst($rows->group);
           $row[] = $rows->is_active == 1 ? '<i class="mdi mdi-eye text-success"></i> Y' : '<i class="mdi mdi-eye-off text-danger"></i> N';
+          $row[] = $rows->created == "" ? "null":date("d/m/Y H:i",strtotime($rows->created));
           $row[] = $rows->last_login == "" ? "null":date("d/m/Y H:i",strtotime($rows->last_login));
-
           $row[] = '
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a href="'.site_url("backend/user/view/".enc_url($rows->id_user)).'" id="view" class="btn btn-primary" title="'.cclang("detail").'">
+                        <a href="'.url("user/view/".enc_url($rows->id_user)).'" id="view" class="btn btn-primary" title="'.cclang("detail").'">
                           <i class="ti-file"></i>
                         </a>
-                        <a href="'.site_url("backend/user/update/".enc_url($rows->id_user)).'" id="edit" class="btn btn-warning" title="'.cclang("update").'">
+                        <a href="'.url("user/update/".enc_url($rows->id_user)).'" id="edit" class="btn btn-warning" title="'.cclang("update").'">
                           <i class="ti-pencil"></i>
                         </a>
-                        <a href="'.site_url("backend/user/delete/".enc_url($rows->id_user)).'" id="delete" class="btn btn-danger" title="'.cclang("delete").'">
+                        <a href="'.url("user/delete/".enc_url($rows->id_user)).'" '.($rows->id_user == 1 ? "style='display:none'":"").' id="delete" class="btn btn-danger" title="'.cclang("delete").'">
                           <i class="ti-trash"></i>
                         </a>
                       </div>
                    ';
-
           $data[] = $row;
       }
 
@@ -103,7 +102,7 @@ function add()
 {
   $this->is_allowed('user_add');
   $this->template->set_title(cclang("add")." user");
-  $data = array('action' => site_url("backend/User/add_action"),
+  $data = array('action' => url("User/add_action"),
                 'button' => "save",
                 'nama' => set_value("nama"),
                 'email' => set_value("email"),
@@ -147,7 +146,7 @@ function add_action()
           $this->model->get_insert("auth_user_to_group",$insert_trans);
 
           set_message("success",cclang("notif_save"));
-          $json['redirect'] = site_url("backend/user");
+          $json['redirect'] = url("user");
           $json['success'] =  true;
         }else {
           foreach ($_POST as $key => $value)
@@ -167,7 +166,7 @@ function update($id)
   $this->is_allowed('user_update');
   if ($row = $this->model->get_where_data(dec_url($id))) {
     $this->template->set_title(cclang("update")." User");
-    $data = array('action' => site_url("backend/User/update_action/$id"),
+    $data = array('action' => url("User/update_action/$id"),
                   'button' => "update",
                   'nama' => set_value("nama",$row->name),
                   'email' => set_value("email",$row->email),
@@ -176,6 +175,8 @@ function update($id)
                   'id_group' => set_value("id_group",$row->id_group),
                   );
     $this->template->view("content/user/form",$data);
+  }else {
+    $this->error404();
   }
 }
 
@@ -208,9 +209,9 @@ function update_action($id)
                                 'id_group' => $this->input->post('id_group')
                               );
 
-          $this->model->get_update("auth_user_to_group",$update_trans,["id_user"=>$id]);
+          $this->model->get_update("auth_user_to_group",$update_trans,["id_user"=>dec_url($id)]);
           set_message("success",cclang("notif_update"));
-          $json['redirect'] = site_url("backend/user");
+          $json['redirect'] = url("user");
           $json['success'] =  true;
         }else {
           foreach ($_POST as $key => $value)
@@ -219,8 +220,6 @@ function update_action($id)
             }
         }
 
-
-        $json['token'] = $this->security->get_csrf_hash();
         return $this->response($json);
     }
 }
@@ -240,6 +239,8 @@ function view($id = null)
                   'created' => set_value("created",$row->created),
                   );
     $this->template->view("content/user/view",$data);
+  }else {
+    $this->error404();
   }
 }
 
@@ -252,9 +253,16 @@ function delete($id)
         'msg' => "do not have permission to access"
       ]);
     }
-    $this->model->get_update("auth_user",["is_delete" => "1"],["id_user" => dec_url($id)]);
-    $json['type_msg'] = "success";
-    $json['msg'] = cclang("notif_delete");
+
+    if (dec_url($id) == 1) {
+      $json['type_msg'] = "error";
+      $json['msg'] = cclang("notif_delete_failed");
+    }else {
+      $this->model->get_update("auth_user",["is_delete" => "1"],["id_user" => dec_url($id)]);
+      $json['type_msg'] = "success";
+      $json['msg'] = cclang("notif_delete");
+    }
+
     return $this->response($json);
   }
 }

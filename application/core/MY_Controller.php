@@ -2,9 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-/**
- * mpampam
- */
+/* dev : mpampam*/
+/* fb : https://facebook.com/mpampam*/
+/* fanspage : https://web.facebook.com/programmerjalanan*/
+/* web : www.mpampam.com*/
+/* Please DO NOT modify this information */
 
 
 class Backend extends CI_Controller{
@@ -22,7 +24,7 @@ class Backend extends CI_Controller{
     if (!$this->session->userdata("login_status")) {
         redirect(site_url("backend/login"),"refresh");
     }else {
-      $this->load->library(array("backend/Template","backend/Userize","form_validation","security","user_agent"));
+      $this->load->library(array("backend/Template","backend/Userize","form_validation","security","user_agent","Encryption","My_encrypt"));
       $this->load->helper(array("app","sct","public","language"));
       $this->lang->load("app",$this->config->item("language"));
       if (setting("user_log") == "Y") {
@@ -45,42 +47,11 @@ class Backend extends CI_Controller{
           ->set_output(json_encode($data));
   }
 
-  public function pagination($config = [])
+  function error404()
   {
-      $this->load->library('pagination');
-
-      $config = [
-          'suffix'           => isset($_GET)?'?'.http_build_query($_GET):'',
-          'base_url'         => site_url($config['base_url']),
-          'total_rows'       => $config['total_rows'],
-          'per_page'         => $config['per_page'],
-          'uri_segment'      => $config['uri_segment'],
-          'num_links'        => 1,
-          'num_tag_open'     => '<li>',
-          'num_tag_close'    => '</li>',
-          'full_tag_open'    => '<ul class="pagination">',
-          'full_tag_close'   => '</ul>',
-          'first_link'       => 'First',
-          'first_tag_open'   => '<li>',
-          'first_tag_close'  => '</li>',
-          'last_link'        => 'Last',
-          'last_tag_open'    => '<li>',
-          'last_tag_close'   => '</li>',
-          'next_link'        => 'Next',
-          'next_tag_open'    => '<li>',
-          'next_tag_close'   => '</li>',
-          'prev_link'        => 'Prev',
-          'prev_tag_open'    => '<li>',
-          'prev_tag_close'   => '</li>',
-          'cur_tag_open'     => '<li class="active"><a href="#">',
-          'cur_tag_close'    => '</a></li>',
-      ];
-
-      $this->pagination->initialize($config);
-
-      return  '<center>'.$this->pagination->create_links().'</center>';
+    $this->template->set_title("Error 404 - Page Not Found");
+    $this->template->view("backend/content/core/error404");
   }
-
 
   function imageUpload()
   {
@@ -106,7 +77,7 @@ class Backend extends CI_Controller{
 
             $config = [
       			'upload_path' 		=> './_temp/uploads/tmp/' . $dir . '/',
-      			'allowed_types' 	=> 'png|jpeg|jpg|gif',
+      			'allowed_types' 	=> 'png|jpeg|jpg|gif|ico',
       			'max_size'  		  => $max_upload,
             'max_filename'    => '20'
       		];
@@ -139,9 +110,9 @@ class Backend extends CI_Controller{
 
   function imageCopy($img_name = null , $file_dir = '', $title="")
   {
-    // if (isset($_POST['file-dir'])) {
-    //   $file_dir = $_POST['file-dir'];
-    // }
+    if (isset($_POST['file-dir'])) {
+      $file_dir = $_POST['file-dir'];
+    }
 
     if (!empty($file_dir)) {
       if (!empty($img_name)) {
@@ -161,7 +132,7 @@ class Backend extends CI_Controller{
 
           if ($this->uri->segment(2)!= "filemanager") {
             $this->db->insert("filemanager",[ "file_name" => $image_copy,
-                                              "ket" => "Di upload melalui ". ($this->title=="title" ? $title:"module ".$this->title),
+                                              "ket" => "Di upload melalui module ".($title=="" ? $this->title : $title),
                                               "created" => date("Y-m-d H:i")
                                             ]);
           }
@@ -200,6 +171,53 @@ class Backend extends CI_Controller{
   }
 
 
+  function imageUploadEditor()
+  {
+        $this->load->helper('file');
+        $max_upload = $this->config->item('max_upload');
+
+        $dir = sess('id_user')."-".sha1(date("Y-m-d"));
+        $path = FCPATH . '/_temp/uploads/tmp';
+
+        if (is_dir($path."/".$dir)) {
+          delete_files($path."/".$dir);
+        }else {
+          mkdir($path."/".$dir, 0777);
+        }
+
+        $config = [
+        'upload_path' 		=> './_temp/uploads/tmp/' . $dir . '/',
+        'allowed_types' 	=> 'png|jpeg|jpg|gif',
+        'max_size'  		  => $max_upload,
+        'max_filename'    => '20'
+      ];
+
+      $this->load->library('upload', $config);
+
+      if ($this->upload->do_upload('file')){
+        $upload_data = $this->upload->data();
+        $file_name 	= $upload_data['file_name'];
+        $file = $this->imageCopy($file_name, $dir, "$this->title (text-editor)");
+        $json['success'] = true;
+        $json['file'] = base_url()."_temp/uploads/img/".$file;
+      }else {
+        $json['success'] = false;
+        $json['msg'] = "Format FIle : png | jpeg | jpg | gif , Max file upload $max_upload Kb";
+      }
+
+      echo json_encode($json);
+  }
+
+  // function imageRemoveEditor()
+  // {
+  //   $src = $this->input->post('src');
+  //   $file_name = str_replace(base_url()."_temp/uploads/img/", '', $src);
+  //   if(unlink("./_temp/uploads/img/".$file_name)){
+  //     $this->db->where('file_name', $file_name);
+  //     $this->db->delete('filemanager');
+  //   }
+  // }
+
 
 function is_allowed($permission = null, $redirect = true)
 {
@@ -212,7 +230,7 @@ function is_allowed($permission = null, $redirect = true)
       return true;
     }else {
       if ($redirect) {
-        redirect(site_url("backend/core/notPermission"));
+        redirect(site_url(ADMIN_ROUTE."/core/notPermission"));
       }
       return false;
     }
@@ -226,7 +244,7 @@ function _cek_password($str)
     if (pass_decrypt(profile("token"),$str,profile("password"))) {
       return true;
     }else {
-      $this->form_validation->set_message('_cek_password', '* Password Salah');
+      $this->form_validation->set_message('_cek_password', '%s Invalid');
       return false;
     }
   }else {
@@ -242,7 +260,7 @@ function _cek_password($str)
    $postman = json_encode($post)!= "[]" ? json_encode($post):null;
    if (!array_key_exists("draw",$post)) {
      $data = array('user' => profile("id_user"),
-                   'controller' => $this->uri->segment(2),
+                   'controller' => $this->title,
                    'url' => $_SERVER['REQUEST_URI'],
                    'ip_address' => $this->input->ip_address(),
                    'data' => $postman,

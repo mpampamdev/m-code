@@ -100,6 +100,20 @@ if(!function_exists('pass_decrypt')) {
 	}
 }
 
+if(!function_exists('get_url')) {
+	function get_url($params = "pagenotfound")
+	{
+		return site_url(ADMIN_ROUTE."/$params");
+	}
+}
+
+if(!function_exists('url')) {
+	function url($params = "pagenotfound")
+	{
+		return site_url(ADMIN_ROUTE."/$params");
+	}
+}
+
 
 function dateTimeFormat($str)
 {
