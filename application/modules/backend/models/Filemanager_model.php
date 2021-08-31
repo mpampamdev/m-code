@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
 /* dev : mpampam*/
 /* fb : https://facebook.com/mpampam*/
@@ -7,61 +7,58 @@
 /* Location: ./application/modules/backend/models/Filemanager_model.php*/
 /* Please DO NOT modify this information */
 
-class Filemanager_model extends MY_Model{
+class Filemanager_model extends MY_Model
+{
+    private $table        = "filemanager";
+    private $primary_key  = "id";
+    private $column_order = [];
+    private $order        = ["id"=>"DESC"];
+    private $select       = "id,file_name,ket,created";
 
-  private $table        = "filemanager";
-  private $primary_key  = "id";
-  private $column_order = [];
-  private $order        = ["id"=>"DESC"];
-  private $select       = "id,file_name,ket,created";
-
-public function __construct()
-	{
-		$config = array(
+    public function __construct()
+    {
+        $config = array(
       'table' 	      => $this->table,
-			'primary_key' 	=> $this->primary_key,
-		 	'select' 	      => $this->select,
+            'primary_key' 	=> $this->primary_key,
+            'select' 	      => $this->select,
       'column_order' 	=> $this->column_order,
       'order' 	      => $this->order,
-		 );
+         );
 
-		parent::__construct($config);
-	}
+        parent::__construct($config);
+    }
 
 
-  private function _get_datatables_query()
+    private function _get_datatables_query()
     {
-      $this->db->select($this->select);
-      $this->db->from($this->table);
+        $this->db->select($this->select);
+        $this->db->from($this->table);
 
-      //filter
-			if($this->input->post('file_name')){
-				$this->db->like('file_name', $this->input->post('file_name'));
-			}
+        //filter
+        if ($this->input->post('file_name')) {
+            $this->db->like('file_name', $this->input->post('file_name'));
+        }
 
-      if($this->input->post('ket')){
-				$this->db->like('ket', $this->input->post('ket'));
-			}
+        if ($this->input->post('ket')) {
+            $this->db->like('ket', $this->input->post('ket'));
+        }
 
 
-      if(isset($_POST['order'])) // here order processing
-       {
-           $this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
-       }
-       else if(isset($this->order))
-       {
-           $order = $this->order;
-           $this->db->order_by(key($order), $order[key($order)]);
-       }
-
+        if (isset($_POST['order'])) { // here order processing
+            $this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+        } elseif (isset($this->order)) {
+            $order = $this->order;
+            $this->db->order_by(key($order), $order[key($order)]);
+        }
     }
 
 
     public function get_datatables()
     {
         $this->_get_datatables_query();
-        if($_POST['length'] != -1)
-        $this->db->limit($_POST['length'], $_POST['start']);
+        if ($_POST['length'] != -1) {
+            $this->db->limit($_POST['length'], $_POST['start']);
+        }
         $query = $this->db->get();
         return $query->result();
     }
@@ -75,10 +72,8 @@ public function __construct()
 
     public function count_all()
     {
-      $this->db->select($this->select);
-      $this->db->from($this->table);
-      return $this->db->count_all_results();
+        $this->db->select($this->select);
+        $this->db->from($this->table);
+        return $this->db->count_all_results();
     }
-
-
 }

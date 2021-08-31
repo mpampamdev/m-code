@@ -1,86 +1,86 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Mcrud extends CI_Controller{
-
-  public function __construct()
-  {
-    parent::__construct();
-    $this->load->library(array("parser","mcrud/generate","form_validation"));
-    $this->load->helper(array("file","generate","language","backend/app"));
-    $this->lang->load("app",$this->config->item("language"));
-  }
-
-  function index()
-  {
-    $rm = array("setting","main_menu","ci_user_login","ci_user_log","ci_sessions","auth_user","auth_user_to_group","auth_permission","auth_permission_to_group","auth_group","main_menu","filemanager");
-    $table = $this->db->list_tables();
-    $get_table = array_diff($table, $rm);
-    $data = array('table_name' => $get_table);
-    $this->load->view("index",$data);
-
-    // echo json_encode($get_table);
-  }
-
-  function get()
-  {
-    if ($this->input->is_ajax_request()) {
-        $json = array('success'=>false, 'alert'=>array(), 'content'=>"");
-        $tables_name = $this->input->post("values");
-        if (!empty($tables_name)) {
-          if (in_array($tables_name,$this->db->list_tables())) {
-            // code...
-            $data['table']    = $tables_name;
-            $data['field']   = $this->db->field_data($tables_name);
-            $json['content']  = $this->load->view("form_generate",$data,true);
-            $json["success"]  = true;
-          }else {
-            $json["alert"] = "** Silahkan pilih table";
-          }
-        }else {
-          $json["alert"] = "** Silahkan pilih table";
-        }
-        echo json_encode($json);
+class Mcrud extends CI_Controller
+{
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->library(array("parser","mcrud/generate","form_validation"));
+        $this->load->helper(array("file","generate","language","backend/app"));
+        $this->lang->load("app", $this->config->item("language"));
     }
-  }
+
+    public function index()
+    {
+        $rm = array("setting","main_menu","ci_user_login","ci_user_log","ci_sessions","auth_user","auth_user_to_group","auth_permission","auth_permission_to_group","auth_group","main_menu","filemanager");
+        $table = $this->db->list_tables();
+        $get_table = array_diff($table, $rm);
+        $data = array('table_name' => $get_table);
+        $this->load->view("index", $data);
+
+        // echo json_encode($get_table);
+    }
+
+    public function get()
+    {
+        if ($this->input->is_ajax_request()) {
+            $json = array('success'=>false, 'alert'=>array(), 'content'=>"");
+            $tables_name = $this->input->post("values");
+            if (!empty($tables_name)) {
+                if (in_array($tables_name, $this->db->list_tables())) {
+                    // code...
+                    $data['table']    = $tables_name;
+                    $data['field']   = $this->db->field_data($tables_name);
+                    $json['content']  = $this->load->view("form_generate", $data, true);
+                    $json["success"]  = true;
+                } else {
+                    $json["alert"] = "** Silahkan pilih table";
+                }
+            } else {
+                $json["alert"] = "** Silahkan pilih table";
+            }
+            echo json_encode($json);
+        }
+    }
 
 
-  function action()
-  {
-    $json = array('success' => false, 'msg' => array());
-    $this->form_validation->set_rules("table","Table","trim|xss_clean|required");
-    $this->form_validation->set_rules("title","Title","trim|xss_clean|required");
-    $this->form_validation->set_rules("model","Model","trim|xss_clean|required|alpha_underscores|callback__cek_model");
-    $this->form_validation->set_rules("controller","Controller","trim|xss_clean|alpha_underscores|required|callback__cek_controller");
-    $this->form_validation->set_rules("show_table[]","Show on table","trim|xss_clean|required",[
+    public function action()
+    {
+        $json = array('success' => false, 'msg' => array());
+        $this->form_validation->set_rules("table", "Table", "trim|xss_clean|required");
+        $this->form_validation->set_rules("title", "Title", "trim|xss_clean|required");
+        $this->form_validation->set_rules("model", "Model", "trim|xss_clean|required|alpha_underscores|callback__cek_model");
+        $this->form_validation->set_rules("controller", "Controller", "trim|xss_clean|alpha_underscores|required|callback__cek_controller");
+        $this->form_validation->set_rules("show_table[]", "Show on table", "trim|xss_clean|required", [
       "required" => "(".cclang('show_in_table').") ".cclang("select_one_field")
     ]);
-    $this->form_validation->set_error_delimiters('<li class="error text-danger"><i style="font-size:11px">','</i></li>');
+        $this->form_validation->set_error_delimiters('<li class="error text-danger"><i style="font-size:11px">', '</i></li>');
 
-    if ($this->form_validation->run()) {
-      //table
-      $table = $this->input->post("table");
-      $field = $this->db->field_data($table); //array
-      $title = $this->input->post("title");
+        if ($this->form_validation->run()) {
+            //table
+            $table = $this->input->post("table");
+            $field = $this->db->field_data($table); //array
+            $title = $this->input->post("title");
 
-      //controllers
-      $controller = strtolower($this->input->post("controller"));
-      $controller_file_name = ucfirst($controller).".php";
-      $controller_class = ucfirst($controller);
-      $controller_title = strtolower($controller);
-      //models
-      $model = strtolower($this->input->post("model"));
-      $model_file_name = ucfirst($model).".php";
-      $model_class = ucfirst($model);
-      //Directory
-      $dir = strtolower($controller);
-      //make a Directory
-      if (!file_exists(FCPATH . '/application/modules/backend/views/content/' . $dir)) {
-        mkdir(FCPATH . '/application/modules/backend/views/content/' . $dir, 0777, TRUE);
-      }
+            //controllers
+            $controller = strtolower($this->input->post("controller"));
+            $controller_file_name = ucfirst($controller).".php";
+            $controller_class = ucfirst($controller);
+            $controller_title = strtolower($controller);
+            //models
+            $model = strtolower($this->input->post("model"));
+            $model_file_name = ucfirst($model).".php";
+            $model_class = ucfirst($model);
+            //Directory
+            $dir = strtolower($controller);
+            //make a Directory
+            if (!file_exists(FCPATH . '/application/modules/backend/views/content/' . $dir)) {
+                mkdir(FCPATH . '/application/modules/backend/views/content/' . $dir, 0777, true);
+            }
 
 
-      $config = [ "tag_php_open" => "<?php",
+            $config = [ "tag_php_open" => "<?php",
                   "open" => "<?=",
                   "close" => "?>",
                   "table" => $table,
@@ -108,31 +108,31 @@ class Mcrud extends CI_Controller{
                   "content_form" => $this->generate->content_form(),
                   "content_detail" => $this->generate->params("detail_view"),
                   ];
-      //make controller
-      $create_controller = $this->parser->parse('mcrud/core/temp_controllers.tmp', $config, TRUE);
-      write_file(FCPATH . "/application/modules/backend/controllers/$controller_file_name", $create_controller);
+            //make controller
+            $create_controller = $this->parser->parse('mcrud/core/temp_controllers.tmp', $config, true);
+            write_file(FCPATH . "/application/modules/backend/controllers/$controller_file_name", $create_controller);
 
-      //make models
-      $create_model = $this->parser->parse('mcrud/core/temp_models.tmp', $config, TRUE);
-      write_file(FCPATH . "/application/modules/backend/models/$model_file_name", $create_model);
+            //make models
+            $create_model = $this->parser->parse('mcrud/core/temp_models.tmp', $config, true);
+            write_file(FCPATH . "/application/modules/backend/models/$model_file_name", $create_model);
 
-      //make index
-      $create_index = $this->parser->parse('mcrud/core/temp_index.tmp', $config, TRUE);
-      write_file(FCPATH . "/application/modules/backend/views/content/$dir/index.php", $create_index);
+            //make index
+            $create_index = $this->parser->parse('mcrud/core/temp_index.tmp', $config, true);
+            write_file(FCPATH . "/application/modules/backend/views/content/$dir/index.php", $create_index);
 
-      //make filter
-      $create_filter = $this->parser->parse('mcrud/core/temp_filter.tmp', $config, TRUE);
-      write_file(FCPATH . "/application/modules/backend/views/content/$dir/filter.php", $create_filter);
+            //make filter
+            $create_filter = $this->parser->parse('mcrud/core/temp_filter.tmp', $config, true);
+            write_file(FCPATH . "/application/modules/backend/views/content/$dir/filter.php", $create_filter);
 
-      //make form
-      $create_form = $this->parser->parse('mcrud/core/temp_form.tmp', $config, TRUE);
-      write_file(FCPATH . "/application/modules/backend/views/content/$dir/form.php", $create_form);
+            //make form
+            $create_form = $this->parser->parse('mcrud/core/temp_form.tmp', $config, true);
+            write_file(FCPATH . "/application/modules/backend/views/content/$dir/form.php", $create_form);
 
-      //make detail
-      $create_detail = $this->parser->parse('mcrud/core/temp_detail.tmp', $config, TRUE);
-      write_file(FCPATH . "/application/modules/backend/views/content/$dir/detail.php", $create_detail);
+            //make detail
+            $create_detail = $this->parser->parse('mcrud/core/temp_detail.tmp', $config, true);
+            write_file(FCPATH . "/application/modules/backend/views/content/$dir/detail.php", $create_detail);
 
-      $location = [
+            $location = [
         '<a class="btn btn-sm btn-info" href="'.site_url("backend/$controller_title").'" target="_blank"> Open Module</a>',
         "/application/modules/backend/controllers/$controller_file_name",
         "/application/modules/backend/models/$model_file_name",
@@ -142,39 +142,36 @@ class Mcrud extends CI_Controller{
         "/application/modules/backend/views/content/$dir/detail.php"
       ];
 
-      $json['msg'] = $location;
-      $json['success'] = true;
-    }else {
-        $json['msg'] = validation_errors();
+            $json['msg'] = $location;
+            $json['success'] = true;
+        } else {
+            $json['msg'] = validation_errors();
+        }
+        echo json_encode($json);
     }
-    echo json_encode($json);
 
-  }
-
-  function _cek_model($str)
-  {
-    if (file_exists(FCPATH . '/application/modules/backend/models/' . $str.".php")) {
-      $this->form_validation->set_message('_cek_model', '%s '.cclang("already_available"));
-      return FALSE;
-    }else {
-      if ($str == $_POST['controller']) {
-        $this->form_validation->set_message('_cek_model', cclang("cek_models"));
-        return FALSE;
-      }else {
-        return true;
-      }
+    public function _cek_model($str)
+    {
+        if (file_exists(FCPATH . '/application/modules/backend/models/' . $str.".php")) {
+            $this->form_validation->set_message('_cek_model', '%s '.cclang("already_available"));
+            return false;
+        } else {
+            if ($str == $_POST['controller']) {
+                $this->form_validation->set_message('_cek_model', cclang("cek_models"));
+                return false;
+            } else {
+                return true;
+            }
+        }
     }
-  }
 
-  function _cek_controller($str)
-  {
-    if (file_exists(FCPATH . '/application/modules/backend/controllers/' . $str.".php")) {
-      $this->form_validation->set_message('_cek_controller', '%s '.cclang("already_available"));
-      return FALSE;
-    }else {
-        return true;
+    public function _cek_controller($str)
+    {
+        if (file_exists(FCPATH . '/application/modules/backend/controllers/' . $str.".php")) {
+            $this->form_validation->set_message('_cek_controller', '%s '.cclang("already_available"));
+            return false;
+        } else {
+            return true;
+        }
     }
-  }
-
-
 }

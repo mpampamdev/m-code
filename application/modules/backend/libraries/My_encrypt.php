@@ -1,8 +1,10 @@
-<?php if(!defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 
 class My_encrypt extends CI_Encryption
 {
-   /**
+    /**
  * Encodes a string.
  *
  * @param string $string The string to encrypt.
@@ -11,17 +13,17 @@ class My_encrypt extends CI_Encryption
  *                returned string should be url-safe.
  * @return string
  */
-public function __construct() {
-parent::__construct();
-}
-
-function encode($string)
-{
-    $ret = parent::encrypt($string);
-
-    if ( !empty($string) )
+    public function __construct()
     {
-        $ret = strtr(
+        parent::__construct();
+    }
+
+    public function encode($string)
+    {
+        $ret = parent::encrypt($string);
+
+        if (!empty($string)) {
+            $ret = strtr(
                 $ret,
                 array(
                     '+' => '_',
@@ -29,30 +31,30 @@ function encode($string)
                     '/' => '~'
                 )
             );
+        }
+
+        return $ret;
     }
 
-    return $ret;
-}
-
-/**
- * Decodes the given string.
- *
- * @access public
- * @param string $string The encrypted string to decrypt.
- * @param string $key[optional] The key to use for decryption.
- * @return string
- */
-function decode($string)
-{
-    $string = strtr(
+    /**
+     * Decodes the given string.
+     *
+     * @access public
+     * @param string $string The encrypted string to decrypt.
+     * @param string $key[optional] The key to use for decryption.
+     * @return string
+     */
+    public function decode($string)
+    {
+        $string = strtr(
             $string,
             array(
                 '_' => '+',
                 '-' => '=',
                 '~' => '/'
             )
-    );
+        );
 
-    return parent::decrypt($string);
-}
+        return parent::decrypt($string);
+    }
 }

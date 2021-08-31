@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 // recaptcha_sitekey google
 $config['recaptcha_sitekey'] =  "6Lfrr6QZAAAAAFRG2cK5imApCXY1gRIa9FnTOgZf";
 

@@ -1,40 +1,44 @@
-<?php if (!defined("BASEPATH")) exit("No direct script access allowed");
-if(!function_exists('enc_url')) {
-  function randomKey($length = 32)
-  {
-    $ci=&get_instance();
-    // $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    // $charactersLength = strlen($characters);
-    // $randomString = '';
-    // for ($i = 0; $i < $length; $i++) {
-    //     $randomString .= $characters[rand(0, $charactersLength - 1)];
-    // }
-    // return $randomString;
-
-    return bin2hex($ci->encryption->create_key(16));
-  }
+<?php if (!defined("BASEPATH")) {
+    exit("No direct script access allowed");
 }
+if (!function_exists('enc_url')) {
+    function randomKey($length = 32)
+    {
+        $ci=&get_instance();
+        // $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        // $charactersLength = strlen($characters);
+        // $randomString = '';
+        // for ($i = 0; $i < $length; $i++) {
+        //     $randomString .= $characters[rand(0, $charactersLength - 1)];
+        // }
+        // return $randomString;
 
-if(!function_exists('enc_url')) {
-  function enc_url($plainText) {
-      $ci=&get_instance();
-      if ($ci->config->item("encryption_url")) {
-        return $ci->my_encrypt->encode($plainText);
-      }else {
-        return $plainText;
-      }
-  }
-}
-
-if(!function_exists('dec_url')) {
-  function dec_url($plainText) {
-    $ci=&get_instance();
-    if ($ci->config->item("encryption_url")) {
-      return $ci->my_encrypt->decode($plainText);
-    }else {
-      return $plainText;
+        return bin2hex($ci->encryption->create_key(16));
     }
-  }
+}
+
+if (!function_exists('enc_url')) {
+    function enc_url($plainText)
+    {
+        $ci=&get_instance();
+        if ($ci->config->item("encryption_url")) {
+            return $ci->my_encrypt->encode($plainText);
+        } else {
+            return $plainText;
+        }
+    }
+}
+
+if (!function_exists('dec_url')) {
+    function dec_url($plainText)
+    {
+        $ci=&get_instance();
+        if ($ci->config->item("encryption_url")) {
+            return $ci->my_encrypt->decode($plainText);
+        } else {
+            return $plainText;
+        }
+    }
 }
 
 

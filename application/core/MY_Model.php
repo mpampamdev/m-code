@@ -1,46 +1,48 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class MY_Model extends CI_Model{
-  private $table = 'table';
-  private $primary_key = 'id';
-  private $column_order = array();
-  private $order        = array();
-  private $select       = "";
+class MY_Model extends CI_Model
+{
+    private $table = 'table';
+    private $primary_key = 'id';
+    private $column_order = array();
+    private $order        = array();
+    private $select       = "";
 
-  public function __construct($config = array())
-  {
-    parent::__construct();
-    //Codeigniter : Write Less Do More
-    foreach ($config as $key => $val) {
-      if(isset($this->$key))
+    public function __construct($config = array())
+    {
+        parent::__construct();
+        //Codeigniter : Write Less Do More
+        foreach ($config as $key => $val) {
+            if (isset($this->$key)) {
                 $this->$key = $val;
-    }
-  }
-
-  function get_data($table, $where =array())
-  {
-    if (is_array($where) AND count($where)) {
-          $this->db->where($where);
+            }
         }
-    return $this->db->get($table);
-  }
+    }
 
-    public function remove($id = NULL)
+    public function get_data($table, $where =array())
+    {
+        if (is_array($where) and count($where)) {
+            $this->db->where($where);
+        }
+        return $this->db->get($table);
+    }
+
+    public function remove($id = null)
     {
         $this->db->where($this->primary_key, $id);
         $this->db->delete($this->table);
         return $this->db->affected_rows();
     }
 
-    function remove_table_where($table,$where)
+    public function remove_table_where($table, $where)
     {
-      $this->db->where($where);
-      $this->db->delete($table);
-      return $this->db->affected_rows();
+        $this->db->where($where);
+        $this->db->delete($table);
+        return $this->db->affected_rows();
     }
 
-    public function change($id = NULL, $data = array())
+    public function change($id = null, $data = array())
     {
         $this->db->where($this->primary_key, $id);
         $this->db->update($this->table, $data);
@@ -48,22 +50,19 @@ class MY_Model extends CI_Model{
         return $this->db->affected_rows();
     }
 
-    public function find($id = NULL, $select_field = [])
+    public function find($id = null, $select_field = [])
     {
-        if (is_array($select_field) AND count($select_field)) {
+        if (is_array($select_field) and count($select_field)) {
             $this->db->select($select_field);
         }
 
-        $this->db->where("".$this->table.'.'.$this->primary_key,$id);
+        $this->db->where("".$this->table.'.'.$this->primary_key, $id);
         $query = $this->db->get($this->table);
 
-        if($query->num_rows()>0)
-        {
+        if ($query->num_rows()>0) {
             return $query->row();
-        }
-        else
-        {
-            return FALSE;
+        } else {
+            return false;
         }
     }
 
@@ -118,34 +117,32 @@ class MY_Model extends CI_Model{
     }
 
 
-  function get_query($query)
+    public function get_query($query)
     {
-      return $this->db->query($query);
+        return $this->db->query($query);
     }
 
-    function get_where($table,$where)
+    public function get_where($table, $where)
     {
-      return $this->db->get_where($table,$where)
+        return $this->db->get_where($table, $where)
                       ->row();
     }
 
-    function get_insert($table,$data)
+    public function get_insert($table, $data)
     {
-      return $this->db->insert($table,$data);
+        return $this->db->insert($table, $data);
     }
 
 
-    function get_update($table,$data,$where)
+    public function get_update($table, $data, $where)
     {
-      return $this->db->where($where)
-                      ->update($table,$data);
+        return $this->db->where($where)
+                      ->update($table, $data);
     }
 
-    function get_delete($table,$where)
+    public function get_delete($table, $where)
     {
-      $this->db->where($where);
-      return $this->db->delete($table);
+        $this->db->where($where);
+        return $this->db->delete($table);
     }
-
-
 } //end class model

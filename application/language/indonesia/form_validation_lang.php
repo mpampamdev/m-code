@@ -8,7 +8,7 @@
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://codeigniter.com
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 $lang['form_validation_required'] = '{field} tidak boleh kosong.';
 $lang['form_validation_isset'] = '{field} harus memiliki nilai.';

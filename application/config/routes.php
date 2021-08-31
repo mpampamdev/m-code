@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -55,14 +55,14 @@ $urlroute = $uri_segments[2];
 // $urlroute = $uri_segments[1];
 
 if ($urlroute == ADMIN_ROUTE) {
-  $route['404_override'] = 'core/pagenotfound';
-}else {
-  $route['404_override'] = 'dsa';
+    $route['404_override'] = 'core/pagenotfound';
+} else {
+    $route['404_override'] = 'dsa';
 }
 
 
 $route['default_controller'] = 'welcome';
-$route['translate_uri_dashes'] = FALSE;
+$route['translate_uri_dashes'] = false;
 
 $route['mcrud'] = 'mcrud/Mcrud';
 

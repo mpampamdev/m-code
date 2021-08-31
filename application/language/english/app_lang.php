@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed ');
+defined('BASEPATH') or exit('No direct script access allowed ');
 $lang['welcome'] = "Hi, Welcome $1";
 $lang['welcome_description'] = "Have a nice day."; //Have a nice day.
 $lang['total_user'] = "total users";
