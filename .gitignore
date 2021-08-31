@@ -1,0 +1,10 @@
+application/cache/*
+!application/cache/index.html
+
+application/logs/*
+!application/logs/index.html
+
+!application/*/.htaccess
+
+# PHPCS
+.php-cs-fixer.cache
